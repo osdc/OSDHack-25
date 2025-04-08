@@ -1,171 +1,184 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import Countdown from "./Countdown";
 
 export default function Home() {
-  const [audio] = useState(new Audio("/osdc.mp3"));
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [secondMousePos, setSecondMousePos] = useState({ x: 0, y: 0 });
+  const [showTimeline, setShowTimeline] = useState(false);
+  const [showRulebook, setShowRulebook] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const handleDownloadPDF = (fileName, downloadName) => {
+    const link = document.createElement('a');
+    link.href = `/${fileName}`;
+    link.download = downloadName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   useEffect(() => {
-    // Autoplay Background Music
-    audio.play().catch(() => console.log("Autoplay failed"));
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
-    // Mouse Move Listener (First Cat & Second Cat)
-    const updateMousePosition = (e) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
+  const loadingVariants = {
+    animate: {
+      opacity: [1, 0.5, 1],
+      transition: {
+        duration: 1.5,
+        repeat: Infinity,
+        ease: "easeInOut",
+      },
+    },
+  };
 
-      // Delay effect for second cat
-      setTimeout(() => {
-        setSecondMousePos({ x: e.clientX - 30, y: e.clientY - 30 });
-      }, 100);
-    };
+  const iconStyle = "w-20 h-20 object-contain cursor-pointer transition-transform hover:scale-105";
 
-    window.addEventListener("mousemove", updateMousePosition);
-    return () => window.removeEventListener("mousemove", updateMousePosition);
-  }, [audio]);
+  const loremIpsum = `
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt 
+    ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
+    ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
+    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+  `;
 
   return (
     <div
-      className="relative min-h-screen flex flex-col justify-center items-center text-white bg-cover bg-center p-6"
-      style={{ backgroundImage: "url('/bg-arcade.jpg')" }}
+      className="min-h-screen bg-[#121212] text-white px-4 py-12"
+      style={{
+        cursor: "url('/cursor.png'), auto",
+        imageRendering: "pixelated",
+      }}
     >
-      {/* Pixelated Cat Follower - Closer to Cursor */}
-      <motion.img
-        src="/pixel-cat.gif"
-        alt="Pixel Cat"
-        className="fixed w-16 h-16 pointer-events-none"
-        style={{
-          left: mousePos.x + 10,
-          top: mousePos.y + 10,
-        }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1, x: mousePos.x + 10, y: mousePos.y + 10 }}
-        transition={{ type: "spring", stiffness: 120, damping: 10, mass: 0.4 }}
-      />
-
-      {/* Second Cat - Slightly Behind */}
-      <motion.img
-        src="/kitty-chase-pixel.webp"
-        alt="Pixel Cat 2"
-        className="fixed w-16 h-16 pointer-events-none"
-        style={{
-          left: secondMousePos.x,
-          top: secondMousePos.y,
-        }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1, x: secondMousePos.x, y: secondMousePos.y }}
-        transition={{ type: "spring", stiffness: 100, damping: 12, mass: 0.5 }}
-      />
-
-      {/* Logo at the top-left */}
-      {/* <img
-        src="https://avatars.githubusercontent.com/u/919383?s=200&v=4"
-        alt="OSDCHack Logo"
-        className="absolute top-4 left-4 w-16 h-16"
-      /> */}
-
-      {/* Main Content */}
-      <div className="text-center px-6">
-        <h1 className="text-5xl md:text-7xl font-ps2p font-bold tracking-widest uppercase pixel-font">
-          OSDCHACK 2025
-        </h1>
-        <p className="mt-4 text-lg md:text-xl text-gray-300">
-          The Ultimate Open Source Hackathon at JIIT
-        </p>
-
-        {/* Centered General Information Section */}
-        <div className="flex justify-center w-full mt-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            className="max-w-4xl w-full bg-black/70 text-white p-6 md:p-10 rounded-md border-4 border-dotted border-gray-400 text-center"
+      {isLoading && (
+        <div className="fixed inset-0 bg-[#121212] flex items-center justify-center z-50">
+          <motion.h2
+            className="text-2xl md:text-3xl font-pixelify text-white tracking-wide"
+            variants={loadingVariants}
+            animate="animate"
           >
-            <h1 className="text-4xl md:text-5xl font-ps2p mb-8 tracking-wide uppercase">
-              General Information
-            </h1>
+            Booting up OSDC.exe
+          </motion.h2>
+        </div>
+      )}
 
-            <p className="text-gray-300 text-lg md:text-xl leading-relaxed font-play">
-              Super-ultra-mega flagship hackathon with a chance to change the trajectory of people’s lives.
-            </p>
+      {!isLoading && (
+        <div className="flex flex-col items-center justify-items-start">
+          <h1 className="text-6xl md:text-7xl font-bold font-ps2p uppercase tracking-widest text-white">
+            OSDHACK'25
+          </h1>
 
-            <div className="border-t-4 border-dotted border-gray-500 my-6"></div>
+          <h2 className="mt-6 text-xl md:text-3xl font-pixelify tracking-wide text-white">
+            THEME
+          </h2>
+          <h2 className="mt-1 text-5xl md:text-6xl font-pixelify tracking-wide text-white flex items-center gap-3">
+            BLAST FROM THE PAST
+          </h2>
 
-            {/* Theme Section */}
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="mt-8 p-5 bg-gray-800 rounded-md border-2 border-dotted border-gray-500"
-            >
-              <h2 className="text-3xl md:text-4xl font-pixelify text-yellow-300">
-                Theme: Blast from the Past
-              </h2>
-              <p className="text-gray-300 text-lg mt-2">
-                Take old-school stuff—retro games, vintage gadgets, dead platforms—and bring them back with a modern twist.
-              </p>
-            </motion.div>
+          <div className="mt-8">
+            <Countdown />
+          </div>
 
-            {/* Mini Themes */}
-            <div className="mt-8 grid gap-y-6">
-              <div>
-                <h3 className="text-2xl font-ps2p text-green-300">Pixel Artify</h3>
-                <p className="text-gray-300 font-play ml-4">Enhance **8-bit** and **retro aesthetics**.</p>
-              </div>
-
-              <div>
-                <h3 className="text-2xl font-ps2p text-blue-300">Rebuild a Lost Tool</h3>
-                <p className="text-gray-300 font-play ml-4">Remake platforms like **Google Reader, Vine, or Winamp**.</p>
-              </div>
-
-              <div>
-                <h3 className="text-2xl font-ps2p text-pink-300">Game-Focused Social Network</h3>
-                <p className="text-gray-300 font-play ml-4">
-                  A **modern Club Penguin or Nintendo Miiverse**, where users share game-related thoughts and art.
-                </p>
-              </div>
+          {/* Main Icons */}
+          <div className="mt-12 grid grid-cols-2 md:grid-cols-5 gap-8">
+            <div className="w-48 h-48 flex flex-col items-center justify-center">
+              <img src="calander.png" alt="calendar" className={`${iconStyle} tint-[#ff6b6b]`} />
+              <span className="font-pixelify mt-3 text-base text-[#ff6b6b]">26th - 27th April</span>
             </div>
 
-            <div className="border-t-4 border-dotted border-gray-500 my-6"></div>
+            <div className="w-48 h-48 flex flex-col items-center justify-center">
+              <img src="location.png" alt="location" className={`${iconStyle} tint-[#4ecdc4]`} />
+              <span className="font-pixelify mt-3 text-base text-[#4ecdc4]">CL-2</span>
+            </div>
 
-            {/* Dates and Venue */}
-            <h2 className="text-2xl md:text-3xl font-pixelify text-yellow-400">Dates</h2>
-            <p className="text-gray-300 font-play">26th - 27th April (48 hours), after **T2** and **lab tests**.</p>
+            <div 
+              onClick={() => setShowRulebook(true)}
+              className="w-48 h-48 flex flex-col items-center justify-center"
+            >
+              <img src="rules.png" alt="rulebook" className={`${iconStyle} tint-[#45b7d1]`} />
+              <span className="font-pixelify mt-3 text-base text-[#45b7d1]">Rulebook</span>
+            </div>
 
-            <h2 className="text-2xl md:text-3xl font-pixelify text-blue-400 mt-6">Venue</h2>
-            <p className="text-gray-300 font-play">All four **Computer Labs (CLs)** beneath ABB-3.</p>
+            <div
+              onClick={() => setShowTimeline(true)}
+              className="w-48 h-48 flex flex-col items-center justify-center"
+            >
+              <img src="clock.png" alt="timeline" className={`${iconStyle} tint-[#96c93d]`} />
+              <span className="font-pixelify mt-3 text-base text-[#96c93d]">Timeline</span>
+            </div>
 
-            <h2 className="text-2xl md:text-3xl font-pixelify text-red-400 mt-6">Team Size</h2>
-            <p className="text-gray-300 font-play">Teams must have **4-6 people**. Participants will form their own teams.</p>
+            <div className="w-48 h-48 flex flex-col items-center justify-center">
+              <img 
+                src="download.png" 
+                alt="download" 
+                className={`${iconStyle} tint-[#ffa502]`}
+                onClick={() => {
+                  handleDownloadPDF('rulebook.pdf', 'OSDHACK25_Rulebook.pdf');
+                  handleDownloadPDF('timeline.pdf', 'OSDHACK25_Timeline.pdf');
+                }}
+              />
+              <span className="font-pixelify mt-3 text-base text-[#ffa502]">Download Assets</span>
+            </div>
+          </div>
 
-            <div className="border-t-4 border-dotted border-gray-500 my-6"></div>
+          {/* Mini Events - Centered */}
+          <div className="mt-12 flex justify-center">
+            <div className="grid grid-cols-2 gap-8 max-w-md">
+              <div className="w-48 h-48 flex flex-col items-center justify-center">
+                <img src="keyboard.png" alt="speed typing" className={`${iconStyle} tint-[#ff6b6b]`} />
+                <span className="font-pixelify mt-3 text-base text-[#ff6b6b]">Speed Typing</span>
+              </div>
 
-            {/* Mini Events */}
-            <h2 className="text-2xl md:text-3xl font-pixelify text-purple-400">Mini Events</h2>
-            <ul className="text-gray-300 font-play mt-4">
-              <li>🔥 Monkey Typing - Fastest typist wins!</li>
-              <li>♟️ Game Theory - Play a strategy game in real-time!</li>
-            </ul>
+              <div className="w-48 h-48 flex flex-col items-center justify-center">
+                <img src="flag.png" alt="capture the flag" className={`${iconStyle} tint-[#4ecdc4]`} />
+                <span className="font-pixelify mt-3 text-base text-[#4ecdc4]">Capture the Flag</span>
+              </div>
+            </div>
+          </div>
 
-            {/* Prize Distribution */}
-            <h2 className="text-2xl md:text-3xl font-pixelify text-green-300 mt-6">Prize Distribution</h2>
-            <ul className="list-none mt-4 text-gray-300 font-play">
-              <li>🥇 First Place - ₹20,000</li>
-              <li>🥈 Second Place - ₹15,000</li>
-              <li>🥉 Third Place - ₹10,000</li>
-              <li>👩‍💻 All-Girls Track - ₹2,500</li>
-              <li>🍼 First Years Only Track - ₹2,500</li>
-            </ul>
-          </motion.div>
+          {/* Timeline Modal */}
+          {showTimeline && (
+            <div className="fixed top-0 left-0 w-full h-full bg-black/70 z-50 flex items-center justify-center">
+              <div className="bg-[#1e1e1e] border-4 border-white p-6 rounded-lg w-11/12 md:w-4/5 lg:w-3/5 max-h-[90vh] overflow-y-auto shadow-2xl relative font-pixelify">
+                <button
+                  className="absolute top-2 right-4 text-white text-xl font-bold hover:text-red-400"
+                  onClick={() => setShowTimeline(false)}
+                >
+                  X
+                </button>
+                <h3 className="text-2xl text-center mb-4 text-white">📆 Timeline</h3>
+                <p className="text-white text-base">{loremIpsum}</p>
+              </div>
+            </div>
+          )}
+
+          {/* Rulebook Modal */}
+          {showRulebook && (
+            <div className="fixed top-0 left-0 w-full h-full bg-black/70 z-50 flex items-center justify-center">
+              <div className="bg-[#1e1e1e] border-4 border-white p-6 rounded-lg w-11/12 md:w-4/5 lg:w-3/5 max-h-[90vh] overflow-y-auto shadow-2xl relative font-pixelify">
+                <button
+                  className="absolute top-2 right-4 text-white text-xl font-bold hover:text-red-400"
+                  onClick={() => setShowRulebook(false)}
+                >
+                  X
+                </button>
+                <h3 className="text-2xl text-center mb-4 text-white">📜 Rulebook</h3>
+                <p className="text-white text-base">{loremIpsum}</p>
+              </div>
+            </div>
+          )}
         </div>
+      )}
 
-        {/* Play Button */}
-        <motion.button
-          onClick={() => audio.play()}
-          whileHover={{ scale: 1.1 }}
-          className="mt-8 px-6 py-3 bg-white text-black font-bold uppercase rounded pixel-border"
-        >
-           🥚🥚🥚🥚🥚🥚
-        </motion.button>
-      </div>
+      {/* CSS for tint effect */}
+      <style jsx>{`
+        .tint-[#ff6b6b] { filter: sepia(1) hue-rotate(320deg) saturate(2); }
+        .tint-[#4ecdc4] { filter: sepia(1) hue-rotate(160deg) saturate(2); }
+        .tint-[#45b7d1] { filter: sepia(1) hue-rotate(180deg) saturate(2); }
+        .tint-[#96c93d] { filter: sepia(1) hue-rotate(60deg) saturate(2); }
+        .tint-[#ffa502] { filter: sepia(1) hue-rotate(20deg) saturate(2); }
+      `}</style>
     </div>
   );
 }

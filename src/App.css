@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
-/* body {
-    cursor: url('/cursor.png'), auto;
-    image-rendering: pixelated;
-  } */
+body, * {
+  cursor: url('/cursor.png') 16 16, auto; /* adjust hotspot */
+  image-rendering: pixelated;
+}
+
   

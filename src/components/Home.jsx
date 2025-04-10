@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Countdown from "./Countdown";
 import Alert from "./Alert";
 import PopupModal from "../components/PopupModal";
@@ -13,14 +13,26 @@ const bootSteps = [
 ];
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true); // Default to true to ensure initial load
+  const [isLoading, setIsLoading] = useState(true);
   const [bootIndex, setBootIndex] = useState(0);
   const [displayedSteps, setDisplayedSteps] = useState([]);
   const [blinkSymbol, setBlinkSymbol] = useState("underscore");
   const [showAlert, setShowAlert] = useState(false);
   const [activeModal, setActiveModal] = useState(null);
+  const audioRef = useRef(null);
+
+  useEffect(() => {
+    audioRef.current = new Audio("/click.mp3");
+  }, []);
+
+  const playClick = () => {
+    const click = new Audio("/click.mp3");
+    click.play();
+  };
+
 
   const handleDownloadPDF = (fileName, downloadName) => {
+    playClick();
     const link = document.createElement("a");
     link.href = `/${fileName}`;
     link.download = downloadName;
@@ -34,35 +46,26 @@ export default function Home() {
       const hasVisited = sessionStorage.getItem("hasVisited");
       const visitTimestamp = sessionStorage.getItem("visitTimestamp");
       const currentTime = Date.now();
-      const fifteenMinutes = 15 * 60 * 1000; // 15 minutes in milliseconds
+      const fifteenMinutes = 15 * 60 * 1000;
 
-      console.log("hasVisited:", hasVisited, "visitTimestamp:", visitTimestamp); // Debug log
-
-      if (!hasVisited || !visitTimestamp || (currentTime - parseInt(visitTimestamp) > fifteenMinutes)) {
-        // First visit, or session expired, or manually cleared
-        console.log("Showing booting screen"); // Debug log
+      if (!hasVisited || !visitTimestamp || currentTime - parseInt(visitTimestamp) > fifteenMinutes) {
         setIsLoading(true);
         sessionStorage.setItem("hasVisited", "true");
         sessionStorage.setItem("visitTimestamp", currentTime.toString());
       } else {
-        // Returning visitor within 15 minutes
-        console.log("Skipping booting screen"); // Debug log
         setIsLoading(false);
       }
     };
 
-    checkSession(); // Run immediately on mount
+    checkSession();
 
-    // Set up a timeout to clear session after 15 minutes
-    const fifteenMinutes = 15 * 60 * 1000;
     const timeout = setTimeout(() => {
-      console.log("Clearing session storage after 15 minutes"); // Debug log
       sessionStorage.removeItem("hasVisited");
       sessionStorage.removeItem("visitTimestamp");
-    }, fifteenMinutes);
+    }, 15 * 60 * 1000);
 
     return () => clearTimeout(timeout);
-  }, []); // Empty dependency array ensures it runs only on mount
+  }, []);
 
   useEffect(() => {
     if (!isLoading) return;
@@ -85,18 +88,20 @@ export default function Home() {
     if (bootIndex === bootSteps.length) {
       const doneTimer = setTimeout(() => {
         setIsLoading(false);
-        setDisplayedSteps([]); // optional: clear boot steps
-        setTimeout(() => setShowAlert(true), 3000); // show alert 3 seconds later
+        setDisplayedSteps([]);
+        setTimeout(() => setShowAlert(true), 3000);
       }, 800);
       return () => clearTimeout(doneTimer);
     }
   }, [bootIndex]);
 
   const handleRegister = () => {
+    playClick();
     window.location.href = "https://forms.gle/example";
   };
 
   const handleCloseAlert = () => {
+    playClick();
     setShowAlert(false);
   };
 
@@ -116,55 +121,55 @@ export default function Home() {
     {
       src: "calendar.png",
       alt: "calendar",
-      text: "25th - 27th April",
+      text: "DATES",
       tint: "tint-[#ff6b6b]",
-      modalHeading: "📅 Schedule",
-      modalContent: "The hackathon will take place from 25th to 27th April at CL-2.",
+      modalHeading: "DATES",
+      modalContent: `April 25 (5:00 PM - 7:00 PM)\nApril 26 (1:00 PM - 6:00 PM)\nApril 27 (10:00 AM - 6:00 PM)\n\nThe hacking period runs from April 25, 9:00 PM to April 27, 9:00 PM.\n\nMark your calendars – it’s gonna be a blast!`,
     },
     {
       src: "location (1).png",
       alt: "location",
-      text: "CL-2",
+      text: "LOCATION",
       tint: "tint-[#4ecdc4]",
-      modalHeading: "📍 Location",
-      modalContent: "The event will be hosted at CL-2 in our campus.",
+      modalHeading: "LOCATION",
+      modalContent: `Venue: Computer Labs CL-1 to CL-4\nBuilding: ABB-3 (Near Gate No. 1)\n\nGrab your gear and head to the labs – your hacking adventure awaits!`,
     },
     {
       src: "rulebook.png",
       alt: "rulebook",
       text: "RULEBOOK",
       tint: "tint-[#45b7d1]",
-      modalHeading: "📜 Rulebook",
-      modalContent: "Make sure to go through all the rules and guidelines before participating.",
+      modalHeading: "RULEBOOK",
+      modalContent: `Read the rules, stay cool.\n\nEverything you need to know before you dive into code. One rulebook to rule them all!`,
     },
     {
       src: "hourglass.png",
       alt: "timeline",
       text: "TIMELINE",
       tint: "tint-[#96c93d]",
-      modalHeading: "⏳ Timeline",
-      modalContent: "Day 1: Opening Ceremony, Day 2: Hacking Begins, Day 3: Judging & Prizes.",
+      modalHeading: "TIMELINE",
+      modalContent: `Day 1: Kickoff + Icebreakers\nDay 2: Hacking officially begins\nDay 3: Final Demos & Prize Distribution\n\nThree days of retro-fueled creativity, fun, and fierce innovation.`,
     },
     {
       src: "theme.png",
       alt: "theme",
       text: "THEME",
       tint: "tint-[#00bcd4]",
-      modalHeading: "🎨 Theme",
-      modalContent: "Theme is Blast From the Past. Here you can give a creative touch to anything retro which was lost behind in time.!",
+      modalHeading: "THEME",
+      modalContent: `Blast From the Past\n\nReimagine the past with a twist of innovation.\nDig up old ideas, gadgets, or trends – then give them a modern, creative spark.\n\nThink floppy disks that serve coffee, or a Walkman that runs Spotify. Surprise us!`,
     },
     {
       src: "prize.png",
       alt: "prizes",
       text: "PRIZES",
       tint: "tint-[#ffc107]",
-      modalHeading: "🏆 Prizes",
-      modalContent: "1st: ₹20,000, 2nd: ₹15,000, 3rd: ₹10,000 + Special Tracks!",
+      modalHeading: "PRIZES",
+      modalContent: `1st Prize: ₹20,000\n2nd Prize: ₹15,000\n3rd Prize: ₹10,000 \n Win big or go home... or do both!`,
     },
     {
       src: "download.png",
       alt: "download",
-      text: "Download Assets",
+      text: "DOWNLOAD ASSETS",
       tint: "tint-[#ffa502]",
       onClick: () => {
         handleDownloadPDF("rulebook.pdf", "OSDHACK25_Rulebook.pdf");
@@ -176,18 +181,19 @@ export default function Home() {
       alt: "speed typing",
       text: "SPEED TYPING",
       tint: "tint-[#ff6b6b]",
-      modalHeading: "⌨️ Speed Typing",
-      modalContent: "Show off your fast fingers in our typing challenge!",
+      modalHeading: "SPEED TYPING",
+      modalContent: `Put your fingers to the test!\n\nA lightning-fast keyboard showdown where speed meets style. Type like the wind and leave the rest in the dust.`,
     },
     {
       src: "flag.png",
       alt: "capture the flag",
       text: "CAPTURE THE FLAG",
       tint: "tint-[#4ecdc4]",
-      modalHeading: "🚩 Capture the Flag",
-      modalContent: "A mini-CTF to test your cybersecurity skills.",
+      modalHeading: "CAPTURE THE FLAG",
+      modalContent: `It’s not just a game – it’s a digital battlefield.\n\nSolve puzzles, crack codes, and snag the flag in this mini-CTF that’s equal parts fun and challenge.`,
     },
   ];
+
 
   return (
     <div
@@ -200,9 +206,15 @@ export default function Home() {
     >
       <div className="fixed top-2 left-4 right-4 flex justify-between items-center z-40 pointer-events-none">
         <div className="flex space-x-2 pointer-events-auto">
-          <img src="/insta.png" alt="Instagram" className={socialIconStyle} />
-          <img src="/discord.png" alt="Discord" className={socialIconStyle} />
-          <img src="/wp.png" alt="WhatsApp" className={socialIconStyle} />
+          <a href="https://www.instagram.com/osdcjiit/" onClick={playClick}>
+            <img src="/insta.png" alt="Instagram" className={socialIconStyle} />
+          </a>
+          <a href="https://discord.gg/ejBdcJr9m7" onClick={playClick}>
+            <img src="/discord.png" alt="Discord" className={socialIconStyle} />
+          </a>
+          <a href="https://web.whatsapp.com/" onClick={playClick}>
+            <img src="/wp.png" alt="WhatsApp" className={socialIconStyle} />
+          </a>
         </div>
         <div className="text-[8px] xs:text-[10px] sm:text-xs md:text-sm text-white font-dogica pointer-events-auto">
           <Countdown />
@@ -262,7 +274,7 @@ export default function Home() {
 
       {!isLoading && (
         <div className="max-w-7xl mx-auto flex flex-col items-center">
-          <h3 className="mt-8 retro-subtitle font-mm uppercase text-[0.6rem] xs:text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">
+          <h3 className="mt-8 mb-3 retro-subtitle font-mm uppercase text-[0.6rem] xs:text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">
             blast from the past
           </h3>
           <h1 className="text-stroke text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-mm uppercase text-white">
@@ -276,13 +288,17 @@ export default function Home() {
                   src={src}
                   alt={alt}
                   className={`${iconStyle} ${tint}`}
-                  onClick={
-                    onClick
-                      ? onClick
-                      : modalHeading
-                      ? () => setActiveModal({ heading: modalHeading, content: modalContent })
-                      : undefined
-                  }
+                  onClick={() => {
+                    playClick();
+                    if (onClick) onClick();
+                    else if (modalHeading) {
+                      setActiveModal({
+                        heading: modalHeading,
+                        content: modalContent,
+                        src,
+                      });
+                    }
+                  }}
                 />
                 <span
                   className={`font-dogica mt-2 text-[6px] xs:text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px] ${tint} text-center`}
@@ -296,45 +312,19 @@ export default function Home() {
           {activeModal && (
             <PopupModal
               isOpen={true}
-              onClose={() => setActiveModal(null)}
+              onClose={() => {
+                playClick();
+                setActiveModal(null);
+              }}
               heading={activeModal.heading}
+              iconSrc={activeModal?.src}
             >
-              <p className="font-dogica">{activeModal.content}</p>
+              {activeModal.content}
             </PopupModal>
+
           )}
         </div>
       )}
-
-      <style jsx>{`
-        .glow {
-          text-shadow: 0 0 2px #00ff80, 0 0 4px #00ff80, 0 0 6px #00ff80;
-        }
-
-        .tint-[#ff6b6b] {
-          filter: sepia(1) hue-rotate(320deg) saturate(2);
-        }
-        .tint-[#4ecdc4] {
-          filter: sepia(1) hue-rotate(160deg) saturate(2);
-        }
-        .tint-[#45b7d1] {
-          filter: sepia(1) hue-rotate(180deg) saturate(2);
-        }
-        .tint-[#96c93d] {
-          filter: sepia(1) hue-rotate(60deg) saturate(2);
-        }
-        .tint-[#ffa502] {
-          filter: sepia(1) hue-rotate(20deg) saturate(2);
-        }
-        .tint-[#f06292] {
-          filter: sepia(1) hue-rotate(300deg) saturate(2);
-        }
-        .tint-[#ffc107] {
-          filter: sepia(1) hue-rotate(40deg) saturate(2);
-        }
-        .tint-[#00bcd4] {
-          filter: sepia(1) hue-rotate(180deg) saturate(3);
-        }
-      `}</style>
     </div>
   );
 }

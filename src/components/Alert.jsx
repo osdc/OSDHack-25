@@ -8,10 +8,11 @@ export default function Alert({ onClose, onRegister }) {
         style={{
           borderWidth: "12px",
           borderStyle: "solid",
-          borderImage: "url('/pixel-border.png') 32 stretch",
+          borderColor: "#D9D9D9", // This line fixes the white border issue
           backgroundColor: "#D9D9D9",
         }}
       >
+
         <div className="flex px-3 py-5 items-center space-x-2">
           <img
             src="caution.png"
@@ -25,7 +26,7 @@ export default function Alert({ onClose, onRegister }) {
             <div className="flex justify-center gap-3 flex-wrap">
               <button
                 onClick={onRegister}
-                className="bg-white border-2 border-black px-4 py-1.5 text-sm text-black font-mm hover:bg-gray-300 transition" 
+                className="bg-white border-2 border-black px-4 py-1.5 text-sm text-black font-mm hover:bg-gray-300 transition"
               >
                 YES
               </button>

@@ -67,7 +67,7 @@ importers:
         specifier: ^15.15.0
         version: 15.15.0
       vite:
-        specifier: ^6.2.0
+        specifier: ^6.2.3
         version: 6.2.3(jiti@2.4.2)(lightningcss@1.29.2)
 
 packages:

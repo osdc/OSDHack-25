@@ -172,7 +172,6 @@ export default function Home() {
       text: "DOWNLOAD ASSETS",
       tint: "tint-[#ffa502]",
       onClick: () => {
-        playClick();
         window.location.href = "https://drive.google.com/drive/folders/1j12Je9PFiT-ZtYepiViggVgZJVH3zNun?usp=sharing";
       },
     },

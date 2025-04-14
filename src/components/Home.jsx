@@ -274,14 +274,14 @@ export default function Home() {
 
       {!isLoading && (
         <div className="max-w-7xl mx-auto flex flex-col items-center">
-          <h3 className="mt-8 mb-3 retro-subtitle font-mm uppercase text-[0.6rem] xs:text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">
+          <h3 className="responsive-blast-text mt-8 mb-3 retro-subtitle font-mm uppercase text-[0.6rem] xs:text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">
             blast from the past
           </h3>
           <h1 className="text-stroke text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-mm uppercase text-white">
             OSDHACK'25
           </h1>
 
-          <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-6 w-full max-w-5xl">
+<div className="mt-10 grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-x-4 gap-y-4 xs:gap-y-5 sm:gap-y-6 md:gap-y-8 w-full max-w-5xl">
             {icons.map(({ src, alt, text, tint, onClick, modalHeading, modalContent }, index) => (
               <div key={index} className="flex flex-col items-center justify-center text-center">
                 <img

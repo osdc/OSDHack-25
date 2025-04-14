@@ -6,6 +6,9 @@ import path from "path"
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(),tailwindcss(),],
+  build: {
+    outDir: 'dist', // Vercel expects output folder
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

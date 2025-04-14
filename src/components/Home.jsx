@@ -172,8 +172,8 @@ export default function Home() {
       text: "DOWNLOAD ASSETS",
       tint: "tint-[#ffa502]",
       onClick: () => {
-        handleDownloadPDF("rulebook.pdf", "OSDHACK25_Rulebook.pdf");
-        handleDownloadPDF("timeline.pdf", "OSDHACK25_Timeline.pdf");
+        playClick();
+        window.location.href = "https://drive.google.com/drive/folders/1j12Je9PFiT-ZtYepiViggVgZJVH3zNun?usp=sharing";
       },
     },
     {
@@ -209,7 +209,7 @@ export default function Home() {
           <a href="https://www.instagram.com/osdcjiit/" onClick={playClick}>
             <img src="/insta.png" alt="Instagram" className={socialIconStyle} />
           </a>
-          <a href="https://discord.gg/ejBdcJr9m7" onClick={playClick}>
+          <a href="https://discord.gg/DwEPjtTD5d" onClick={playClick}>
             <img src="/discord.png" alt="Discord" className={socialIconStyle} />
           </a>
           <a href="https://web.whatsapp.com/" onClick={playClick}>

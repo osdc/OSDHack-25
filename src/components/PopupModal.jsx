@@ -1,13 +1,25 @@
 import React from "react";
 
+const parseContent = (text) => {
+  if (typeof text !== "string") return text;
+
+  // Convert Markdown-style links [text](url) to HTML anchor tags
+  const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  const withLinks = text.replace(linkRegex, '<a href="$2" target="_blank" class="text-blue-700 underline hover:text-blue-500">$1</a>');
+
+  // Convert newlines to <br>
+  const withLineBreaks = withLinks.replace(/\n/g, "<br/>");
+
+  return withLineBreaks;
+};
+
 const PopupModal = ({ isOpen, onClose, heading, iconSrc, children }) => {
   if (!isOpen) return null;
 
-  // Ensure children is a string so we can split on '\n'
-  const contentLines = typeof children === "string" ? children.split("\n") : [children];
+  const parsedContent = parseContent(children);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 overflow-hidden">
       <div className="relative w-full sm:w-[90%] md:w-[65%] max-h-[90vh] bg-[#D9D9D9] border-2 border-black shadow-lg overflow-hidden font-mm text-black">
         {/* Close Button */}
         <button
@@ -32,18 +44,11 @@ const PopupModal = ({ isOpen, onClose, heading, iconSrc, children }) => {
           </div>
 
           {/* White Box with Content */}
-          <div className="bg-white border-2 border-black px-4 sm:px-6 pt-6 pb-5 relative">
-            <div className="font-dogica text-sm sm:text-base px-2 sm:px-4 py-2 sm:py-3 leading-relaxed whitespace-pre-wrap">
-              <span className="text-lg sm:text-xl leading-none">“</span>
-              <div className="inline-block">
-                {contentLines.map((line, index) => (
-                  <p key={index} className="mb-2">
-                    {line}
-                  </p>
-                ))}
-              </div>
-              <span className="text-lg sm:text-xl leading-none">”</span>
-            </div>
+          <div className="bg-white border-2 border-black px-4 sm:px-6 pt-6 pb-5 relative break-words">
+            <div
+              className="font-dogica text-sm sm:text-base px-2 sm:px-4 py-2 sm:py-3 leading-relaxed whitespace-pre-wrap"
+              dangerouslySetInnerHTML={{ __html: `<span class="text-lg sm:text-xl leading-none">“</span><div class="inline-block">${parsedContent}</div><span class="text-lg sm:text-xl leading-none">”</span>` }}
+            />
           </div>
         </div>
       </div>

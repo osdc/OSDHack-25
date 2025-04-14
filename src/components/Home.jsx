@@ -1,7 +1,9 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback, Suspense, lazy } from "react";
 import Countdown from "./Countdown";
 import Alert from "./Alert";
 import PopupModal from "../components/PopupModal";
+
+const BootScreen = lazy(() => import("../BootScreen")); // Lazy loaded
 
 const bootSteps = [
   "BOOTING UP OSDC.EXE",
@@ -19,19 +21,21 @@ export default function Home() {
   const [blinkSymbol, setBlinkSymbol] = useState("underscore");
   const [showAlert, setShowAlert] = useState(false);
   const [activeModal, setActiveModal] = useState(null);
-  const audioRef = useRef(null);
+  const clickAudioRef = useRef(null);
 
   useEffect(() => {
-    audioRef.current = new Audio("/click.mp3");
+    clickAudioRef.current = new Audio("/click.mp3");
+    clickAudioRef.current.volume = 0.5;
   }, []);
 
-  const playClick = () => {
-    const click = new Audio("/click.mp3");
-    click.play();
-  };
+  const playClick = useCallback(() => {
+    if (clickAudioRef.current) {
+      clickAudioRef.current.currentTime = 0;
+      clickAudioRef.current.play();
+    }
+  }, []);
 
-
-  const handleDownloadPDF = (fileName, downloadName) => {
+  const handleDownloadPDF = useCallback((fileName, downloadName) => {
     playClick();
     const link = document.createElement("a");
     link.href = `/${fileName}`;
@@ -39,50 +43,43 @@ export default function Home() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  };
+  }, [playClick]);
 
   useEffect(() => {
-    const checkSession = () => {
-      const hasVisited = sessionStorage.getItem("hasVisited");
-      const visitTimestamp = sessionStorage.getItem("visitTimestamp");
-      const currentTime = Date.now();
-      const fifteenMinutes = 15 * 60 * 1000;
+    const hasVisited = sessionStorage.getItem("hasVisited");
+    const visitTimestamp = parseInt(sessionStorage.getItem("visitTimestamp"));
+    const now = Date.now();
+    const fifteenMins = 15 * 60 * 1000;
 
-      if (!hasVisited || !visitTimestamp || currentTime - parseInt(visitTimestamp) > fifteenMinutes) {
-        setIsLoading(true);
-        sessionStorage.setItem("hasVisited", "true");
-        sessionStorage.setItem("visitTimestamp", currentTime.toString());
-      } else {
-        setIsLoading(false);
-      }
-    };
-
-    checkSession();
+    if (!hasVisited || isNaN(visitTimestamp) || now - visitTimestamp > fifteenMins) {
+      setIsLoading(true);
+      sessionStorage.setItem("hasVisited", "true");
+      sessionStorage.setItem("visitTimestamp", now.toString());
+    } else {
+      setIsLoading(false);
+    }
 
     const timeout = setTimeout(() => {
       sessionStorage.removeItem("hasVisited");
       sessionStorage.removeItem("visitTimestamp");
-    }, 15 * 60 * 1000);
+    }, fifteenMins);
 
     return () => clearTimeout(timeout);
   }, []);
 
   useEffect(() => {
-    if (!isLoading) return;
+    if (!isLoading || bootIndex >= bootSteps.length) return;
 
     const timer = setTimeout(() => {
-      if (bootIndex < bootSteps.length) {
-        const shouldReplace = Math.random() < 0.5;
-        setDisplayedSteps((prev) =>
-          shouldReplace ? [bootSteps[bootIndex]] : [...prev, bootSteps[bootIndex]]
-        );
-        setBlinkSymbol(Math.random() < 0.5 ? "underscore" : "dots");
-        setBootIndex((prev) => prev + 1);
-      }
+      const step = bootSteps[bootIndex];
+      const shouldReplace = Math.random() < 0.5;
+      setDisplayedSteps((prev) => shouldReplace ? [step] : [...prev, step]);
+      setBlinkSymbol(Math.random() < 0.5 ? "underscore" : "dots");
+      setBootIndex((prev) => prev + 1);
     }, 300);
 
     return () => clearTimeout(timer);
-  }, [bootIndex, isLoading]);
+  }, [isLoading, bootIndex]);
 
   useEffect(() => {
     if (bootIndex === bootSteps.length) {
@@ -95,15 +92,15 @@ export default function Home() {
     }
   }, [bootIndex]);
 
-  const handleRegister = () => {
+  const handleRegister = useCallback(() => {
     playClick();
     window.location.href = "https://forms.gle/example";
-  };
+  }, [playClick]);
 
-  const handleCloseAlert = () => {
+  const handleCloseAlert = useCallback(() => {
     playClick();
     setShowAlert(false);
-  };
+  }, [playClick]);
 
   const iconStyle =
     "w-12 xs:w-14 sm:w-16 md:w-20 lg:w-24 h-auto object-contain cursor-pointer transition-transform hover:scale-105";
@@ -116,8 +113,10 @@ export default function Home() {
       alt: "register",
       text: "REGISTER",
       tint: "tint-[#f06292]",
-      onClick: handleRegister,
+      modalHeading: "REGISTER",
+      modalContent: `This form is for the online version of OSDHack '25. Any college students from non-JIIT institutes may participate online. Offline participation is mandatory for registered JIIT students.\n[Online Registration Form](https://forms.gle/online-form-link)\n\nThis form is for the offline version of OSDHack '25, for students from JIIT. Participating students must attend the hackathon offline at the CL Labs beneath ABB-3.\n[Offline Registration Form](https://forms.gle/offline-form-link)`,
     },
+    
     {
       src: "calendar.png",
       alt: "calendar",
@@ -193,7 +192,6 @@ export default function Home() {
     },
   ];
 
-
   return (
     <div
       className="min-h-screen bg-black text-white px-4 sm:px-6 md:px-8 py-12"
@@ -220,109 +218,64 @@ export default function Home() {
         </div>
       </div>
 
-      {isLoading && (
-        <div className="fixed inset-0 bg-black z-50 font-mm text-[#00FF80] text-[8px] sm:text-[9px] md:text-[10px] p-4">
-          <div className="flex flex-col items-start justify-start h-full w-full">
-            {displayedSteps.map((step, index) => {
-              const isLast = index === displayedSteps.length - 1;
-              return (
-                <div key={index} className="leading-tight mb-1">
-                  {step}
-                  {isLast && (
-                    <span className="ml-1">
-                      {blinkSymbol === "underscore" ? (
-                        <span className="blink-underscore">_</span>
-                      ) : (
-                        <span className="blink-dots">...</span>
-                      )}
-                    </span>
-                  )}
+      {isLoading ? (
+        <Suspense>
+          <BootScreen steps={displayedSteps} blinkSymbol={blinkSymbol} />
+        </Suspense>
+      ) : (
+        <>
+          {showAlert && <Alert onClose={handleCloseAlert} onRegister={handleRegister} />}
+          <div className="max-w-7xl mx-auto flex flex-col items-center">
+            <h3 className="responsive-blast-text mt-8 mb-3 retro-subtitle font-mm uppercase text-[0.6rem] xs:text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">
+              blast from the past
+            </h3>
+            <h1 className="text-stroke text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-mm uppercase text-white">
+              OSDHACK'25
+            </h1>
+
+            <div className="mt-10 grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-x-4 gap-y-4 xs:gap-y-5 sm:gap-y-6 md:gap-y-8 w-full max-w-5xl">
+              {icons.map(({ src, alt, text, tint, onClick, modalHeading, modalContent }, index) => (
+                <div key={index} className="flex flex-col items-center justify-center text-center">
+                  <img
+                    src={src}
+                    alt={alt}
+                    className={`${iconStyle} ${tint}`}
+                    onClick={() => {
+                      playClick();
+                      if (onClick) onClick();
+                      else if (modalHeading) {
+                        setActiveModal({
+                          heading: modalHeading,
+                          content: modalContent,
+                          src,
+                        });
+                      }
+                    }}
+                  />
+                  <span
+                    className={`font-dogica mt-2 text-[6px] xs:text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px] ${tint} text-center`}
+                  >
+                    {text}
+                  </span>
                 </div>
-              );
-            })}
+              ))}
+            </div>
+
+            {activeModal && (
+              <PopupModal
+                isOpen={true}
+                onClose={() => {
+                  playClick();
+                  setActiveModal(null);
+                }}
+                heading={activeModal.heading}
+                iconSrc={activeModal?.src}
+              >
+                {activeModal.content}
+              </PopupModal>
+            )}
           </div>
-
-          <style jsx>{`
-            .blink-underscore {
-              animation: blinkUnderscore 1s steps(2, start) infinite;
-            }
-            .blink-dots {
-              animation: blinkDots 1.2s ease-in-out infinite;
-            }
-            @keyframes blinkUnderscore {
-              50% {
-                opacity: 0;
-              }
-            }
-            @keyframes blinkDots {
-              0%,
-              100% {
-                opacity: 1;
-              }
-              50% {
-                opacity: 0.3;
-              }
-            }
-          `}</style>
-        </div>
-      )}
-
-      {!isLoading && showAlert && (
-        <Alert onClose={handleCloseAlert} onRegister={handleRegister} />
-      )}
-
-      {!isLoading && (
-        <div className="max-w-7xl mx-auto flex flex-col items-center">
-          <h3 className="responsive-blast-text mt-8 mb-3 retro-subtitle font-mm uppercase text-[0.6rem] xs:text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">
-            blast from the past
-          </h3>
-          <h1 className="text-stroke text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-mm uppercase text-white">
-            OSDHACK'25
-          </h1>
-
-<div className="mt-10 grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-x-4 gap-y-4 xs:gap-y-5 sm:gap-y-6 md:gap-y-8 w-full max-w-5xl">
-            {icons.map(({ src, alt, text, tint, onClick, modalHeading, modalContent }, index) => (
-              <div key={index} className="flex flex-col items-center justify-center text-center">
-                <img
-                  src={src}
-                  alt={alt}
-                  className={`${iconStyle} ${tint}`}
-                  onClick={() => {
-                    playClick();
-                    if (onClick) onClick();
-                    else if (modalHeading) {
-                      setActiveModal({
-                        heading: modalHeading,
-                        content: modalContent,
-                        src,
-                      });
-                    }
-                  }}
-                />
-                <span
-                  className={`font-dogica mt-2 text-[6px] xs:text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px] ${tint} text-center`}
-                >
-                  {text}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          {activeModal && (
-            <PopupModal
-              isOpen={true}
-              onClose={() => {
-                playClick();
-                setActiveModal(null);
-              }}
-              heading={activeModal.heading}
-              iconSrc={activeModal?.src}
-            >
-              {activeModal.content}
-            </PopupModal>
-
-          )}
-        </div>
+        </>
       )}
     </div>
   );

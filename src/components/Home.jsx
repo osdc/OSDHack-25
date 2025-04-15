@@ -94,8 +94,16 @@ export default function Home() {
 
   const handleRegister = useCallback(() => {
     playClick();
-    window.location.href = "https://forms.gle/example";
-  }, [playClick]);
+    setShowAlert(false); // Close the alert
+    const registerIcon = icons.find(icon => icon.alt === "register");
+    if (registerIcon) {
+      setActiveModal({
+        heading: registerIcon.modalHeading,
+        content: registerIcon.modalContent,
+        src: registerIcon.src,
+      });
+    }
+  }, [playClick]);   
 
   const handleCloseAlert = useCallback(() => {
     playClick();
@@ -114,7 +122,7 @@ export default function Home() {
       text: "REGISTER",
       tint: "tint-[#f06292]",
       modalHeading: "REGISTER",
-      modalContent: `This form is for the online version of OSDHack '25. Any college students from non-JIIT institutes may participate online. Offline participation is mandatory for registered JIIT students.\n[Online Registration Form](https://forms.gle/online-form-link)\n\nThis form is for the offline version of OSDHack '25, for students from JIIT. Participating students must attend the hackathon offline at the CL Labs beneath ABB-3.\n[Offline Registration Form](https://forms.gle/offline-form-link)`,
+      modalContent: `This form is for the online version of OSDHack '25.\n Any college students from non-JIIT institutes may participate online. Offline participation is mandatory for registered JIIT students.\n\n[Online Registration Form](https://forms.gle/online-form-link)\n\nThis form is for the offline version of OSDHack '25, for students from JIIT. Participating students must attend the hackathon offline at the CL Labs beneath ABB-3.\n\n[Offline Registration Form](https://forms.gle/offline-form-link)`,
     },
     
     {
@@ -163,7 +171,7 @@ export default function Home() {
       text: "PRIZES",
       tint: "tint-[#ffc107]",
       modalHeading: "PRIZES",
-      modalContent: `1st Prize: ₹20,000\n2nd Prize: ₹15,000\n3rd Prize: ₹10,000 \n Win big or go home... or do both!`,
+      modalContent: `Offline Hackathon:\n₹40,000 in total prizes\n\nOnline Hackathon:\n₹30,000 in total prizes\n\n\nBring your best ideas to life\nand walk away with glory (and cash).`,
     },
     {
       src: "download.png",

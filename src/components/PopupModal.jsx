@@ -31,17 +31,20 @@ const PopupModal = ({ isOpen, onClose, heading, iconSrc, children }) => {
 
         {/* Modal Scrollable Content */}
         <div className="overflow-y-auto max-h-[calc(90vh-3rem)] px-4 pt-4 pb-6 custom-scroll">
-          {/* Heading with Icon */}
-          <div className="flex items-center space-x-3 mb-4">
+          <div className="flex items-start gap-3 mb-4 pr-8">
             {iconSrc && (
               <img
                 src={iconSrc}
                 alt="icon"
-                className="w-8 h-8 sm:w-10 sm:h-10 object-contain max-w-none"
+                className="w-8 h-8 sm:w-10 sm:h-10 object-contain max-w-none mt-1"
               />
             )}
-            <h3 className="text-xl sm:text-2xl font-mm">{heading}</h3>
+            <h3 className="text-xl sm:text-2xl font-mm break-words leading-snug">
+              {heading}
+            </h3>
           </div>
+
+
 
           {/* White Box with Content */}
           <div className="bg-white border-2 border-black px-4 sm:px-6 pt-6 pb-5 relative break-words">

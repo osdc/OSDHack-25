@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback, Suspense, lazy } from "react"
 import Countdown from "./Countdown";
 import Alert from "./Alert";
 import PopupModal from "../components/PopupModal";
+import Stuff from "./stuff";
 
 const BootScreen = lazy(() => import("../BootScreen")); // Lazy loaded
 
@@ -135,11 +136,11 @@ export default function Home() {
     },
     {
       src: "location (1).png",
-      alt: "location",
-      text: "LOCATION",
+      alt: "Remote",
+      text: "REMOTE",
       tint: "tint-[#4ecdc4]",
       modalHeading: "LOCATION",
-      modalContent: `Venue: Computer Labs CL-1 to CL-4\nBuilding: ABB-3 (Near Gate No. 1)\n\nGrab your gear and head to the labs – your hacking adventure awaits!`,
+      modalContent: `Venue: Your home`,
     },
     {
       src: "rulebook.png",
@@ -147,7 +148,7 @@ export default function Home() {
       text: "RULEBOOK",
       tint: "tint-[#45b7d1]",
       modalHeading: "RULEBOOK",
-      modalContent: `Read the rules, stay cool.\n\nEverything you need to know before you dive into code. One rulebook to rule them all!`,
+      modalContent: <Stuff/>,
     },
     {
       src: "hourglass.png",

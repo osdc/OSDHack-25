@@ -1,9 +1,7 @@
 import React from 'react';
 export default function Stuff() {
     const rules=[
-        "1. Only JIIT students may participate.\n",
-        "2. Registration deadline: April 25, 2025, 11:00 AM.\n",
-        "3. Bring your laptops (for the offline hackathon). Labs will provide computers and RJ45 internet access. (MacBook users: bring port adapters).\n",
+        "1. Registration deadline: April 25, 2025, 11:00 AM.\n",
         "4. Teams must have 4-6 members.\n",
         "5. Teams must be JIIT students only (JIIT-62 and JIIT-128 can mix).\n",
         "6. Build any software project - web apps, drivers, etc. (no hardware projects).\n",

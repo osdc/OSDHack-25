@@ -123,7 +123,7 @@ export default function Home() {
       text: "REGISTER",
       tint: "tint-[#f06292]",
       modalHeading: "REGISTER",
-      modalContent: `This form is for the online version of OSDHack '25.\n Any college students from non-JIIT institutes may participate online. Offline participation is mandatory for registered JIIT students.\n\n[Online Registration Form](https://forms.gle/online-form-link)\n\nThis form is for the offline version of OSDHack '25, for students from JIIT. Participating students must attend the hackathon offline at the CL Labs beneath ABB-3.\n\n[Offline Registration Form](https://forms.gle/offline-form-link)`,
+      modalContent: `Participation is open for college students from all institutes in India.\n\nAll participants must register for the hackathon here: [Registration Form](http://osdhack25.devpost.com/)\n\n(Only 1 person per team has to register.)`,
     },
     
     {
@@ -132,7 +132,7 @@ export default function Home() {
       text: "DATES",
       tint: "tint-[#ff6b6b]",
       modalHeading: "DATES",
-      modalContent: `April 25 (5:00 PM - 7:00 PM)\nApril 26 (1:00 PM - 6:00 PM)\nApril 27 (10:00 AM - 6:00 PM)\n\nThe hacking period runs from April 25, 9:00 PM to April 27, 9:00 PM.\n\nMark your calendars – it’s gonna be a blast!`,
+      modalContent: `Hackathon dates:\n11 July (7:00 PM) - 13 July (11:59 PM)`,
     },
     {
       src: "location (1).png",
@@ -156,7 +156,7 @@ export default function Home() {
       text: "TIMELINE",
       tint: "tint-[#96c93d]",
       modalHeading: "TIMELINE",
-      modalContent: `Day 1: Kickoff + Icebreakers\nDay 2: Hacking officially begins\nDay 3: Final Demos & Prize Distribution\n\nThree days of retro-fueled creativity, fun, and fierce innovation.`,
+      modalContent: `Hackathon Schedule:\nOpening Ceremony: July 11 (7:00 PM)\nHacking Period:\nMid Evalutaion: July 12-13 (12:00 AM - 11:59 PM)\nEvaluations: July 13 (12:00 AM - 12:00 PM)\nFinal Submission: July 14 (12:00 AM)\n\nMini Events:\nSpeed typing: \nSession 1: 12 July (12:00 PM - 1:00 PM)\nSession 2: 13 July (12:00 PM - 1:00 PM)\nFinals: 13 July (7:00PM)\n\nCapture the Flag:\nStarting: 12 July (5:00 PM)\nFinishing: 13 July (5:00 PM).\nThree days of retro-fueled creativity, fun, and fierce innovation.`,
     },
     {
       src: "theme.png",
@@ -172,7 +172,7 @@ export default function Home() {
       text: "PRIZES",
       tint: "tint-[#ffc107]",
       modalHeading: "PRIZES",
-      modalContent: `Offline Hackathon:\n₹40,000 in total prizes\n\nOnline Hackathon:\n₹30,000 in total prizes\n\n\nBring your best ideas to life\nand walk away with glory (and cash).`,
+      modalContent: `Hackathon Prizes:\n~₹20,000 in cash and more than ₹1,00,000 worth of goodies and vouchers!\n\nMini Events Prizes:\nGoodies and ~₹3,000 in cash\n\n\nBring your best ideas to life\nand walk away with glory (and cash).`,
     },
     {
       src: "download.png",

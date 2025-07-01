@@ -1,39 +1,89 @@
-import React from 'react';
+import React from "react";
 
-export default function Stuff() {
+export default function HackathonRules() {
   const rules = [
-    "Registration Deadline: July 10, 2025, 11:59 PM.",
-    "Team Composition: Teams must have 2–4 members and consist of students only.",
-    "Project Type: Build any software-based project (web apps, drivers, tools, etc.). No hardware projects allowed.",
-    "Version Control: Use Git for version control. A GitHub repository must be created with all project code publicly available.",
-    "Commit Timeline: All code must be written and committed during the hackathon. Late commits won't be counted.",
-    "Open Source: Projects must be open source with a valid Free and Open Source license.",
-    "Use of External Code: You may use open-source libraries/assets with proper attribution and licensing.",
-    "Originality: Projects must be original and not previously submitted to any hackathon.",
-    "Submission Platform: Final submissions must be made on Devpost (GitHub link, description, 1–3 min video, deployment link).",
-    "Mid-Evaluation Requirement: Teams must submit for mid-evaluation. Failure to do so will result in disqualification.",
-    "Discord Participation: All team members must join the official Discord server.",
-    "Rule Enforcement: Any rule violations may lead to disqualification.",
-    "Plagiarism: Plagiarism in any form will be strictly penalized.",
-    "Organizing Authority: The organizing team's decisions are final."
+    {
+      title: "Registration Deadline",
+      content: "July 10, 2025, 11:59 PM.",
+    },
+    {
+      title: "Team Composition",
+      content: "Teams must have 2–4 members and consist of students only.",
+    },
+    {
+      title: "Project Type",
+      content:
+        "Build any software-based project (web apps, drivers, tools, etc.). No hardware projects allowed.",
+    },
+    {
+      title: "Version Control",
+      content:
+        "Use Git for version control. A GitHub repository must be created with all project code publicly available.",
+    },
+    {
+      title: "Commit Timeline",
+      content:
+        "All code must be written and committed during the hackathon. Late commits won't be counted.",
+    },
+    {
+      title: "Open Source",
+      content:
+        "Projects must be open source with a valid Free and Open Source license.",
+    },
+    {
+      title: "Use of External Code",
+      content:
+        "You may use open-source libraries/assets with proper attribution and licensing.",
+    },
+    {
+      title: "Originality",
+      content:
+        "Projects must be original and not previously submitted to any hackathon.",
+    },
+    {
+      title: "Submission Platform",
+      content:
+        "Final submissions must be made on Devpost (GitHub link, description, 1–3 min video, deployment link).",
+    },
+    {
+      title: "Mid-Evaluation Requirement",
+      content:
+        "Teams must submit for mid-evaluation. Failure to do so will result in disqualification.",
+    },
+    {
+      title: "Discord Participation",
+      content: "All team members must join the official Discord server.",
+    },
+    {
+      title: "Rule Enforcement",
+      content: "Any rule violations may lead to disqualification.",
+    },
+    {
+      title: "Plagiarism",
+      content: "Plagiarism in any form will be strictly penalized.",
+    },
+    {
+      title: "Organizing Authority",
+      content: "The organizing team's decisions are final.",
+    },
   ];
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <h1 className="text-4xl font-extrabold text-center text-gray-800 mb-10">
-        Hackathon Rules
-      </h1>
-      <ul className="space-y-5">
+    <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 2xl:px-32 py-6 box-border">
+      <div className="max-w-7xl mx-auto space-y-4">
+        <h2 className="text-center text-lg sm:text-xl font-bold mb-4">Hackathon Rules</h2>
+
         {rules.map((rule, index) => (
-          <li
-            key={index}
-            className="flex items-start gap-3 p-5 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-shadow"
-          >
-            <span className="text-lg font-semibold text-gray-600">{index + 1}.</span>
-            <p className="text-gray-700 leading-relaxed">{rule}</p>
-          </li>
+          <div key={index} className="border border-black bg-white">
+            <div className="px-4 py-3 font-bold bg-[#f0f0f0] text-sm sm:text-base md:text-lg">
+              {index + 1}. {rule.title}
+            </div>
+            <div className="px-4 py-3 whitespace-pre-line text-sm sm:text-base md:text-lg">
+              {rule.content}
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

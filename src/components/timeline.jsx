@@ -10,10 +10,6 @@ export default function Timeline() {
       title: "→ Hacking Period",
       description: "July 11 (7:00 PM) to July 13 (11:59 PM)",
     },
-    // {
-    //   title: "→ Evaluations",
-    //   description: "July 13 (12:00 AM - 12:00 PM)",
-    // },
     {
       title: "→ Mid Evaluation",
       description: "July 13 (12:00AM to 11:59PM)",

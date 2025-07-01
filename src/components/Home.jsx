@@ -189,7 +189,7 @@ export default function Home() {
       text: "SPEED TYPING",
       tint: "tint-[#ff6b6b]",
       modalHeading: "SPEED TYPING",
-      modalContent: `Put your fingers to the test!\n\nA lightning-fast keyboard showdown where speed meets style. Type like the wind and leave the rest in the dust.`,
+      modalContent: `Put your fingers to the test!\n\nA lightning-fast keyboard showdown where speed meets style. Type like the wind and leave the rest in the dust.\n\nTimeline:\nSession 1 -> 12 July (12:00 PM - 1:00 PM)\nSession 2 -> 13 July (12:00 PM - 1:00 PM)\nFinals    -> 13 July (7:00 PM)`,
     },
     {
       src: "flag.png",
@@ -197,7 +197,7 @@ export default function Home() {
       text: "CAPTURE THE FLAG",
       tint: "tint-[#4ecdc4]",
       modalHeading: "CAPTURE THE FLAG",
-      modalContent: `It’s not just a game – it’s a digital battlefield.\n\nSolve puzzles, crack codes, and snag the flag in this mini-CTF that’s equal parts fun and challenge.`,
+      modalContent: `It’s not just a game – it’s a digital battlefield.\n\nSolve puzzles, crack codes, and snag the flag in this mini-CTF that’s equal parts fun and challenge.\n\nTimeline:\nStarts - 12 July at 5:00 PM\nEnds   - 13 July at 5:00 PM`,
     },
   ];
 

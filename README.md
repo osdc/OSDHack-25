@@ -1,12 +1,43 @@
-# React + Vite
+# 🚀 OSDHACK'25
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**OSDHACK'25**, is where you can cook awesome projects along with many other open sorcerers. In case you want to set up the website and contribute, here's the recipe to do that 🍳 :
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📦 Prerequisites
 
-## Expanding the ESLint configuration
+Ensure the following are installed:
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Node.js** (>= 14)
+- **npm** (>= 6) or **yarn** (optional)
+
+---
+
+## ⚙️ Installation Steps
+
+### 1. Install Vite Globally (Optional but recommended)
+
+```bash
+npm install -g vite
+```
+
+### 2. Install Project Dependencies
+
+```bash
+npm install
+```
+
+### 3. 🚀 Running the Development Server
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Then open:
+
+```bash
+http://localhost:5173/
+```
+Happy Cookin 🧑‍🍳

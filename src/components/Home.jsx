@@ -313,6 +313,7 @@ export default function Home() {
                     alt="CodeCrafters"
                     className="h-5 sm:h-7 md:h-8 object-contain"/>
                 </a>
+                
                 <p className="font-dogica text-[10px] sm:text-xs">
                   We ❤️ our Sponsors
                 </p>

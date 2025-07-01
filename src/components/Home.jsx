@@ -230,10 +230,10 @@ export default function Home() {
     >
       <div className="fixed top-2 left-4 right-4 flex justify-between items-center z-40 pointer-events-none">
         <div className="flex space-x-2 pointer-events-auto">
-          <a href="https://www.instagram.com/osdcjiit/" onClick={playClick}>
+          <a href="https://www.instagram.com/osdc.dev/" onClick={playClick}>
             <img src="/insta.png" alt="Instagram" className={socialIconStyle} />
           </a>
-          <a href="https://discord.gg/D9mka7FCdB/" onClick={playClick}>
+          <a href="https://discord.gg/D9mka7FCdB" onClick={playClick}>
             <img src="/discord.png" alt="Discord" className={socialIconStyle} />
           </a>
           <a href="https://x.com/osdc_dev/" onClick={playClick}>
@@ -301,6 +301,22 @@ export default function Home() {
                 {activeModal.content}
               </PopupModal>
             )}
+            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-4 text-center">
+                <p className="font-dogica text-[10px] sm:text-xs">Sponsored By</p>
+                <a
+                  href="https://www.codecrafters.io/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:scale-105 transition-transform">
+                    <img
+                    src="/CodeCrafters.png"
+                    alt="CodeCrafters"
+                    className="h-5 sm:h-7 md:h-8 object-contain"/>
+                </a>
+                <p className="font-dogica text-[10px] sm:text-xs">
+                  We ❤️ our Sponsors
+                </p>
+            </div>
           </div>
         </>
       )}

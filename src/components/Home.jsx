@@ -261,7 +261,7 @@ export default function Home() {
               OSDHACK'25
             </h1>
 
-            <div className="mt-25 grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-x-4 gap-y-4 xs:gap-y-5 sm:gap-y-6 md:gap-y-8 w-full">
+            <div className="mt-20 grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-x-4 gap-y-4 xs:gap-y-5 sm:gap-y-6 md:gap-y-8 w-full">
               {icons.map(({ src, alt, text, tint, onClick, modalHeading, modalContent }, index) => (
                 <div key={index} className="flex flex-col items-center justify-center text-center">
                   <img
@@ -303,7 +303,7 @@ export default function Home() {
               </PopupModal>
             )}
 
-            <div className="mt-20 flex lex-col sm:flex-row items-center justify-center gap-1 sm:gap-4 text-center">
+            <div className="mt-10 flex lex-col sm:flex-row items-center justify-center gap-1 sm:gap-4 text-center">
               <p className="font-dogica text-[10px] sm:text-xs">Sponsored By</p>
               <a
                 href="https://www.codecrafters.io/"

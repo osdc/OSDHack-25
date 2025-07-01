@@ -70,19 +70,34 @@ export default function HackathonRules() {
 
   return (
     <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 2xl:px-32 py-6 box-border">
-      <div className="max-w-7xl mx-auto space-y-4">
-        <h2 className="text-center text-lg sm:text-xl font-bold mb-4">Hackathon Rules</h2>
+      <div
+        className="max-w-4xl mx-auto space-y-6 font-dogica text-[8px] sm:text-[10px] md:text-xs"
+        style={{
+          fontFamily: "dogica, mm, sans-serif",
+          imageRendering: "pixelated",
+        }}
+      >
+        <h2 className="text-center text-lg sm:text-xl font-bold mb-4">
+          HACKATHON RULES
+        </h2>
 
         {rules.map((rule, index) => (
-          <div key={index} className="border border-black bg-white">
-            <div className="px-4 py-3 font-bold bg-[#f0f0f0] text-sm sm:text-base md:text-lg">
-              {index + 1}. {rule.title}
+          <div
+            key={index}
+            className="border border-black bg-white"
+          >
+            <div className="px-4 py-3 font-bold bg-[#f0f0f0] text-[10px] sm:text-sm md:text-base">
+              → {index + 1}. {rule.title}
             </div>
-            <div className="px-4 py-3 whitespace-pre-line text-sm sm:text-base md:text-lg">
+            <div className="px-4 py-3 text-black text-[10px] sm:text-sm md:text-base whitespace-pre-line">
               {rule.content}
             </div>
           </div>
         ))}
+
+        <p className="text-center mt-6 font-bold text-[10px] sm:text-sm md:text-base text-black">
+          Follow the rules. Embrace the chaos. Let the best retro devs win!
+        </p>
       </div>
     </div>
   );

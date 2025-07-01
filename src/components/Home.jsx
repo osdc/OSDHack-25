@@ -4,6 +4,7 @@ import Alert from "./Alert";
 import PopupModal from "../components/PopupModal";
 import Stuff from "./stuff";
 import Tracks from "./tracks";
+import Faqs from "./Faqs";
 
 const BootScreen = lazy(() => import("../BootScreen")); // Lazy loaded
 
@@ -157,7 +158,7 @@ export default function Home() {
       text: "TIMELINE",
       tint: "tint-[#96c93d]",
       modalHeading: "TIMELINE",
-      modalContent: `Hackathon Schedule:\nOpening Ceremony: July 11 (7:00 PM)\nHacking Period:\nMid Evalutaion: July 12-13 (12:00 AM - 11:59 PM)\nEvaluations: July 13 (12:00 AM - 12:00 PM)\nFinal Submission: July 14 (12:00 AM)\n\nMini Events:\nSpeed typing: \nSession 1: 12 July (12:00 PM - 1:00 PM)\nSession 2: 13 July (12:00 PM - 1:00 PM)\nFinals: 13 July (7:00PM)\n\nCapture the Flag:\nStarting: 12 July (5:00 PM)\nFinishing: 13 July (5:00 PM).\nThree days of retro-fueled creativity, fun, and fierce innovation.`,
+      modalContent: `Hackathon Schedule:\nOpening Ceremony: July 11 (7:00 PM)\nHacking Period:\nMid Evaluation: July 12-13 (12:00 AM - 11:59 PM)\nEvaluations: July 13 (12:00 AM - 12:00 PM)\nFinal Submission: July 14 (12:00 AM)\n\nMini Events:\nSpeed typing: \nSession 1: 12 July (12:00 PM - 1:00 PM)\nSession 2: 13 July (12:00 PM - 1:00 PM)\nFinals: 13 July (7:00PM)\n\nCapture the Flag:\nStarting: 12 July (5:00 PM)\nFinishing: 13 July (5:00 PM).\nThree days of retro-fueled creativity, fun, and fierce innovation.`,
     },
     {
       src: "theme.png",
@@ -208,6 +209,14 @@ export default function Home() {
       modalHeading: "TRACKS",
       modalContent: <Tracks/>,
     },
+    {
+      src: "faq.png",
+      alt: "faq",
+      text: "FAQs",
+      tint: "tint-[#ffa502]",
+      modalHeading: "FAQs",
+      modalContent: <Faqs />,
+    }
   ];
 
   return (
@@ -224,11 +233,11 @@ export default function Home() {
           <a href="https://www.instagram.com/osdcjiit/" onClick={playClick}>
             <img src="/insta.png" alt="Instagram" className={socialIconStyle} />
           </a>
-          <a href="https://discord.gg/DwEPjtTD5d" onClick={playClick}>
+          <a href="https://discord.gg/D9mka7FCdB/" onClick={playClick}>
             <img src="/discord.png" alt="Discord" className={socialIconStyle} />
           </a>
-          <a href="https://web.whatsapp.com/" onClick={playClick}>
-            <img src="/wp.png" alt="WhatsApp" className={socialIconStyle} />
+          <a href="https://x.com/osdc_dev/" onClick={playClick}>
+            <img src="/x2.png" alt="Twitter" className={socialIconStyle} />
           </a>
         </div>
         <div className="text-[8px] xs:text-[10px] sm:text-xs md:text-sm text-white font-dogica pointer-events-auto">

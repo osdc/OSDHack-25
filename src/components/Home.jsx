@@ -5,6 +5,7 @@ import PopupModal from "../components/PopupModal";
 import Stuff from "./stuff";
 import Tracks from "./tracks";
 import Faqs from "./Faqs";
+import Timeline from "./timeline"
 
 const BootScreen = lazy(() => import("../BootScreen")); // Lazy loaded
 
@@ -158,7 +159,7 @@ export default function Home() {
       text: "TIMELINE",
       tint: "tint-[#96c93d]",
       modalHeading: "TIMELINE",
-      modalContent: `Hackathon Schedule:\nOpening Ceremony: July 11 (7:00 PM)\nHacking Period:\nMid Evaluation: July 12-13 (12:00 AM - 11:59 PM)\nEvaluations: July 13 (12:00 AM - 12:00 PM)\nFinal Submission: July 14 (12:00 AM)\n\nMini Events:\nSpeed typing: \nSession 1: 12 July (12:00 PM - 1:00 PM)\nSession 2: 13 July (12:00 PM - 1:00 PM)\nFinals: 13 July (7:00PM)\n\nCapture the Flag:\nStarting: 12 July (5:00 PM)\nFinishing: 13 July (5:00 PM).\nThree days of retro-fueled creativity, fun, and fierce innovation.`,
+      modalContent: <Timeline/>,
     },
     {
       src: "theme.png",
@@ -309,7 +310,7 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="hover:scale-105 transition-transform">
                     <img
-                    src="/CodeCrafters.png"
+                    src="/CodeCrafters.png" // Checked
                     alt="CodeCrafters"
                     className="h-5 sm:h-7 md:h-8 object-contain"/>
                 </a>

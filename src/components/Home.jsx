@@ -5,6 +5,7 @@ import PopupModal from "../components/PopupModal";
 import Stuff from "./stuff";
 import Tracks from "./tracks";
 import Faqs from "./Faqs";
+import Timeline from "./timeline"
 
 const BootScreen = lazy(() => import("../BootScreen")); // Lazy loaded
 
@@ -158,7 +159,7 @@ export default function Home() {
       text: "TIMELINE",
       tint: "tint-[#96c93d]",
       modalHeading: "TIMELINE",
-      modalContent: `Hackathon Schedule:\nOpening Ceremony: July 11 (7:00 PM)\nHacking Period:\nMid Evaluation: July 12-13 (12:00 AM - 11:59 PM)\nEvaluations: July 13 (12:00 AM - 12:00 PM)\nFinal Submission: July 14 (12:00 AM)\n\nMini Events:\nSpeed typing: \nSession 1: 12 July (12:00 PM - 1:00 PM)\nSession 2: 13 July (12:00 PM - 1:00 PM)\nFinals: 13 July (7:00PM)\n\nCapture the Flag:\nStarting: 12 July (5:00 PM)\nFinishing: 13 July (5:00 PM).\nThree days of retro-fueled creativity, fun, and fierce innovation.`,
+      modalContent: <Timeline/>,
     },
     {
       src: "theme.png",
@@ -230,10 +231,10 @@ export default function Home() {
     >
       <div className="fixed top-2 left-4 right-4 flex justify-between items-center z-40 pointer-events-none">
         <div className="flex space-x-2 pointer-events-auto">
-          <a href="https://www.instagram.com/osdcjiit/" onClick={playClick}>
+          <a href="https://www.instagram.com/osdc.dev/" onClick={playClick}>
             <img src="/insta.png" alt="Instagram" className={socialIconStyle} />
           </a>
-          <a href="https://discord.gg/D9mka7FCdB/" onClick={playClick}>
+          <a href="https://discord.gg/D9mka7FCdB" onClick={playClick}>
             <img src="/discord.png" alt="Discord" className={socialIconStyle} />
           </a>
           <a href="https://x.com/osdc_dev/" onClick={playClick}>
@@ -301,6 +302,22 @@ export default function Home() {
                 {activeModal.content}
               </PopupModal>
             )}
+            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-4 text-center">
+                <p className="font-dogica text-[10px] sm:text-xs">Sponsored By</p>
+                <a
+                  href="https://www.codecrafters.io/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:scale-105 transition-transform">
+                    <img
+                    src="/codecrafters.png" // Checked
+                    alt="CodeCrafters"
+                    className="h-5 sm:h-7 md:h-8 object-contain"/>
+                </a>
+                <p className="font-dogica text-[10px] sm:text-xs">
+                  We ❤️ our Sponsors
+                </p>
+            </div>
           </div>
         </>
       )}

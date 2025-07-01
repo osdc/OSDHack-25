@@ -5,7 +5,12 @@ import PopupModal from "../components/PopupModal";
 import Stuff from "./stuff";
 import Tracks from "./tracks";
 import Faqs from "./Faqs";
-import Timeline from "./timeline"
+import Timeline from "./timeline";
+import Theme from "./Theme";
+import Register from "./Register";
+import Prizes from "./Prizes";
+import SpeedTyping from "./SpeedTyping";
+import CTF from "./Ctf";
 
 const BootScreen = lazy(() => import("../BootScreen")); // Lazy loaded
 
@@ -98,7 +103,7 @@ export default function Home() {
 
   const handleRegister = useCallback(() => {
     playClick();
-    setShowAlert(false); // Close the alert
+    setShowAlert(false);
     const registerIcon = icons.find(icon => icon.alt === "register");
     if (registerIcon) {
       setActiveModal({
@@ -107,7 +112,7 @@ export default function Home() {
         src: registerIcon.src,
       });
     }
-  }, [playClick]);   
+  }, [playClick]);
 
   const handleCloseAlert = useCallback(() => {
     playClick();
@@ -126,9 +131,8 @@ export default function Home() {
       text: "REGISTER",
       tint: "tint-[#f06292]",
       modalHeading: "REGISTER",
-      modalContent: `Participation is open for college students from all institutes in India.\n\nAll participants must register for the hackathon here: [Registration Form](http://osdhack25.devpost.com/)\n\n(Only 1 person per team has to register.)`,
+      modalContent: <Register />
     },
-    
     {
       src: "calendar.png",
       alt: "calendar",
@@ -151,7 +155,7 @@ export default function Home() {
       text: "RULEBOOK",
       tint: "tint-[#45b7d1]",
       modalHeading: "RULEBOOK",
-      modalContent: <Stuff/>,
+      modalContent: <Stuff />,
     },
     {
       src: "hourglass.png",
@@ -159,7 +163,7 @@ export default function Home() {
       text: "TIMELINE",
       tint: "tint-[#96c93d]",
       modalHeading: "TIMELINE",
-      modalContent: <Timeline/>,
+      modalContent: <Timeline />,
     },
     {
       src: "theme.png",
@@ -167,16 +171,14 @@ export default function Home() {
       text: "THEME",
       tint: "tint-[#00bcd4]",
       modalHeading: "THEME",
-      modalContent: `Blast From the Past\n\nReimagine the past with a twist of innovation.\nDig up old ideas, gadgets, or trends – then give them a modern, creative spark.\n\nThink floppy disks that serve coffee, or a Walkman that runs Spotify. Surprise us!`,
-    },
+      modalContent: <Theme/> },
     {
       src: "prize.png",
       alt: "prizes",
       text: "PRIZES",
       tint: "tint-[#ffc107]",
       modalHeading: "PRIZES",
-      modalContent: `Hackathon Prizes:\n~₹20,000 in cash and more than ₹1,00,000 worth of goodies and vouchers!\n\nMini Events Prizes:\nGoodies and ~₹3,000 in cash\n\n\nBring your best ideas to life\nand walk away with glory (and cash).`,
-    },
+      modalContent: <Prizes/>  },
     {
       src: "download.png",
       alt: "download",
@@ -192,23 +194,21 @@ export default function Home() {
       text: "SPEED TYPING",
       tint: "tint-[#ff6b6b]",
       modalHeading: "SPEED TYPING",
-      modalContent: `Put your fingers to the test!\n\nA lightning-fast keyboard showdown where speed meets style. Type like the wind and leave the rest in the dust.\n\nTimeline:\nSession 1 -> 12 July (12:00 PM - 1:00 PM)\nSession 2 -> 13 July (12:00 PM - 1:00 PM)\nFinals    -> 13 July (7:00 PM)`,
-    },
+      modalContent: <SpeedTyping/>},
     {
       src: "flag.png",
       alt: "capture the flag",
       text: "CAPTURE THE FLAG",
       tint: "tint-[#4ecdc4]",
       modalHeading: "CAPTURE THE FLAG",
-      modalContent: `It’s not just a game – it’s a digital battlefield.\n\nSolve puzzles, crack codes, and snag the flag in this mini-CTF that’s equal parts fun and challenge.\n\nTimeline:\nStarts - 12 July at 5:00 PM\nEnds   - 13 July at 5:00 PM`,
-    },
+      modalContent: <CTF/>},
     {
       src: "music.png",
       alt: "tracks",
       text: "TRACKS",
       tint: "tint-[#00bcd4]",
       modalHeading: "TRACKS",
-      modalContent: <Tracks/>,
+      modalContent: <Tracks />,
     },
     {
       src: "faq.png",
@@ -222,7 +222,7 @@ export default function Home() {
 
   return (
     <div
-      className="min-h-screen bg-black text-white px-4 sm:px-6 md:px-8 py-12"
+      className="min-h-screen bg-black text-white py-12"
       style={{
         cursor: "url('/cursor.png') 16 16, auto",
         imageRendering: "pixelated",
@@ -253,7 +253,7 @@ export default function Home() {
       ) : (
         <>
           {showAlert && <Alert onClose={handleCloseAlert} onRegister={handleRegister} />}
-          <div className="max-w-7xl mx-auto flex flex-col items-center">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 flex flex-col items-center">
             <h3 className="responsive-blast-text mt-8 mb-3 retro-subtitle font-mm uppercase text-[0.6rem] xs:text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">
               blast from the past
             </h3>
@@ -261,7 +261,7 @@ export default function Home() {
               OSDHACK'25
             </h1>
 
-            <div className="mt-10 grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-x-4 gap-y-4 xs:gap-y-5 sm:gap-y-6 md:gap-y-8 w-full max-w-5xl">
+            <div className="mt-25 grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-x-4 gap-y-4 xs:gap-y-5 sm:gap-y-6 md:gap-y-8 w-full">
               {icons.map(({ src, alt, text, tint, onClick, modalHeading, modalContent }, index) => (
                 <div key={index} className="flex flex-col items-center justify-center text-center">
                   <img
@@ -302,21 +302,24 @@ export default function Home() {
                 {activeModal.content}
               </PopupModal>
             )}
-            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-4 text-center">
-                <p className="font-dogica text-[10px] sm:text-xs">Sponsored By</p>
-                <a
-                  href="https://www.codecrafters.io/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:scale-105 transition-transform">
-                    <img
-                    src="/codecrafters.png" // Checked
-                    alt="CodeCrafters"
-                    className="h-5 sm:h-7 md:h-8 object-contain"/>
-                </a>
-                <p className="font-dogica text-[10px] sm:text-xs">
-                  We ❤️ our Sponsors
-                </p>
+
+            <div className="mt-20 flex lex-col sm:flex-row items-center justify-center gap-1 sm:gap-4 text-center">
+              <p className="font-dogica text-[10px] sm:text-xs">Sponsored By</p>
+              <a
+                href="https://www.codecrafters.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:scale-105 transition-transform"
+              >
+                <img
+                  src="/codecrafters.png"
+                  alt="CodeCrafters"
+                  className="h-5 sm:h-7 md:h-8 object-contain"
+                />
+              </a>
+              <p className="font-dogica text-[10px] sm:text-xs">
+                We ❤️ our Sponsors
+              </p>
             </div>
           </div>
         </>

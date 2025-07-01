@@ -3,6 +3,7 @@ import Countdown from "./Countdown";
 import Alert from "./Alert";
 import PopupModal from "../components/PopupModal";
 import Stuff from "./stuff";
+import Tracks from "./tracks";
 
 const BootScreen = lazy(() => import("../BootScreen")); // Lazy loaded
 
@@ -198,6 +199,14 @@ export default function Home() {
       tint: "tint-[#4ecdc4]",
       modalHeading: "CAPTURE THE FLAG",
       modalContent: `It’s not just a game – it’s a digital battlefield.\n\nSolve puzzles, crack codes, and snag the flag in this mini-CTF that’s equal parts fun and challenge.\n\nTimeline:\nStarts - 12 July at 5:00 PM\nEnds   - 13 July at 5:00 PM`,
+    },
+    {
+      src: "music.png",
+      alt: "tracks",
+      text: "TRACKS",
+      tint: "tint-[#00bcd4]",
+      modalHeading: "TRACKS",
+      modalContent: <Tracks/>,
     },
   ];
 

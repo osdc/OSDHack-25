@@ -150,7 +150,7 @@ export default function Home() {
       text: "RULEBOOK",
       tint: "tint-[#45b7d1]",
       modalHeading: "RULEBOOK",
-      modalContent: <Stuff/>,
+      modalContent: "TBA",
     },
     {
       src: "hourglass.png",

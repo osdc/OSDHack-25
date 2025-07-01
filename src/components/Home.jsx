@@ -310,7 +310,7 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="hover:scale-105 transition-transform">
                     <img
-                    src="/CodeCrafters.png" // Checked
+                    src="/codecrafters.png" // Checked
                     alt="CodeCrafters"
                     className="h-5 sm:h-7 md:h-8 object-contain"/>
                 </a>

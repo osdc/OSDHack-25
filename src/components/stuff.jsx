@@ -1,101 +1,89 @@
 import React from "react";
 
-export default function Stuff() {
+export default function HackathonRules() {
   const rules = [
     {
-      title: "→ Registration Deadline",
-      description: "Registration closes on July 10, 2025, 11:59 PM.",
+      title: "Registration Deadline",
+      content: "July 10, 2025, 11:59 PM.",
     },
     {
-      title: "→ Team Composition",
-      description: "Teams must have 2–4 members and consist of students only.",
+      title: "Team Composition",
+      content: "Teams must have 2–4 members and consist of students only.",
     },
     {
-      title: "→ Project Type",
-      description:
-        "Build any software-based project such as web apps, mobile apps, drivers, tools, etc. Hardware projects are not allowed.",
+      title: "Project Type",
+      content:
+        "Build any software-based project (web apps, drivers, tools, etc.). No hardware projects allowed.",
     },
     {
-      title: "→ Version Control",
-      description:
+      title: "Version Control",
+      content:
         "Use Git for version control. A GitHub repository must be created with all project code publicly available.",
     },
     {
-      title: "→ Commit Timeline",
-      description:
+      title: "Commit Timeline",
+      content:
         "All code must be written and committed during the hackathon. Late commits won't be counted.",
     },
     {
-      title: "→ Open Source Requirement",
-      description:
-        "Projects must be open source with a valid Free and Open Source license (https://opensource.org/licenses).",
+      title: "Open Source",
+      content:
+        "Projects must be open source with a valid Free and Open Source license.",
     },
     {
-      title: "→ Use of External Code",
-      description:
+      title: "Use of External Code",
+      content:
         "You may use open-source libraries/assets with proper attribution and licensing.",
     },
     {
-      title: "→ Originality",
-      description:
+      title: "Originality",
+      content:
         "Projects must be original and not previously submitted to any hackathon.",
     },
     {
-      title: "→ Submission Platform",
-      description:
-        "Final submissions must be made on Devpost including GitHub repo link, Project description, 1–3 min video demo (hosted on YouTube, Drive, etc.), and Deployment link (if applicable).",
+      title: "Submission Platform",
+      content:
+        "Final submissions must be made on Devpost (GitHub link, description, 1–3 min video, deployment link).",
     },
     {
-      title: "→ Mid-Evaluation Requirement",
-      description:
-        "Teams must submit for mid-evaluation. Failure to do so will result in disqualification from the finals.",
+      title: "Mid-Evaluation Requirement",
+      content:
+        "Teams must submit for mid-evaluation. Failure to do so will result in disqualification.",
     },
     {
-      title: "→ Discord Participation",
-      description:
-        "All team members must join the official Discord server for updates, announcements, and support.",
+      title: "Discord Participation",
+      content: "All team members must join the official Discord server.",
     },
     {
-      title: "→ Rule Enforcement",
-      description: "Any rule violations may lead to disqualification.",
+      title: "Rule Enforcement",
+      content: "Any rule violations may lead to disqualification.",
     },
     {
-      title: "→ Plagiarism",
-      description:
-        "Plagiarism in any form will be strictly penalized. We take it seriously. We mean it.",
+      title: "Plagiarism",
+      content: "Plagiarism in any form will be strictly penalized.",
     },
     {
-      title: "→ Organizing Authority",
-      description:
-        "The organizing team's decisions are final in all matters.",
+      title: "Organizing Authority",
+      content: "The organizing team's decisions are final.",
     },
   ];
 
   return (
-    <div
-      className="max-w-3xl mx-auto space-y-4 px-4 sm:px-6 md:px-8 overflow-y-auto max-h-[80vh]"
-      style={{
-        fontFamily: "dogica, mm, sans-serif",
-        imageRendering: "pixelated",
-      }}
-    >
-      <h2 className="text-center text-base sm:text-lg md:text-xl font-bold mb-4">
-        Hackathon Rules & Guidelines
-      </h2>
+    <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 2xl:px-32 py-6 box-border">
+      <div className="max-w-7xl mx-auto space-y-4">
+        <h2 className="text-center text-lg sm:text-xl font-bold mb-4">Hackathon Rules</h2>
 
-      {rules.map((rule, index) => (
-        <div
-          key={index}
-          className="border border-black bg-white rounded-md shadow-md"
-        >
-          <h3 className="px-4 py-2 font-bold bg-[#f0f0f0] text-[11px] sm:text-xs md:text-sm flex items-center">
-            {rule.title}
-          </h3>
-          <p className="px-4 py-3 text-[10px] sm:text-xs md:text-sm whitespace-pre-line text-black">
-            {rule.description}
-          </p>
-        </div>
-      ))}
+        {rules.map((rule, index) => (
+          <div key={index} className="border border-black bg-white">
+            <div className="px-4 py-3 font-bold bg-[#f0f0f0] text-sm sm:text-base md:text-lg">
+              {index + 1}. {rule.title}
+            </div>
+            <div className="px-4 py-3 whitespace-pre-line text-sm sm:text-base md:text-lg">
+              {rule.content}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

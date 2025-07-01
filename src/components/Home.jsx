@@ -202,7 +202,7 @@ export default function Home() {
     },
     {
       src: "music.png",
-      alt: "theme",
+      alt: "tracks",
       text: "TRACKS",
       tint: "tint-[#00bcd4]",
       modalHeading: "TRACKS",

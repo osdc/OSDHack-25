@@ -46,10 +46,12 @@ export default function Register() {
         {/* One Per Team */}
         <div className="border border-black bg-white">
           <div className="px-4 py-3 font-bold bg-[#f0f0f0] text-sm sm:text-base md:text-lg">
-            → One Per Team
+            → Registration
           </div>
           <div className="px-4 py-3 text-sm sm:text-base md:text-lg text-black">
-            Only 1 person per team has to register.
+            Every participant needs to register
+            <br />
+            Teams will be formed later
           </div>
         </div>
 

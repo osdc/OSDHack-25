@@ -17,7 +17,7 @@ export default function Prizes() {
         {/* Hackathon Prizes */}
         <div className="border border-black bg-white">
           <div className="px-4 py-2 font-bold bg-[#f0f0f0] text-[10px] sm:text-sm md:text-base">
-            🏆 Hackathon Prizes
+            Hackathon Prizes
           </div>
           <div className="px-4 py-2 text-black text-[10px] sm:text-sm md:text-base">
             <ul className="list-disc pl-4 space-y-1">
@@ -30,7 +30,7 @@ export default function Prizes() {
         {/* Mini Events Prizes */}
         <div className="border border-black bg-white">
           <div className="px-4 py-2 font-bold bg-[#f0f0f0] text-[10px] sm:text-sm md:text-base">
-            🎯 Mini Events Prizes
+            Mini Events Prizes
           </div>
           <div className="px-4 py-2 text-black text-[10px] sm:text-sm md:text-base">
             <ul className="list-disc pl-4 space-y-1">

@@ -53,7 +53,7 @@ export default function Faqs() {
 
   return (
     <div className="space-y-3">
-      <h2 className="text-lg font-bold mb-2">
+      <h2 className="text-lg text-center font-bold mb-2">
         Frequently Asked Questions (FAQs)
       </h2>
 

@@ -48,7 +48,7 @@ export default function Timeline() {
 
   return (
     <div
-      className="max-w-3xl mx-auto space-y-6 px-4 sm:px-6 md:px-8 overflow-y-auto max-h-[80vh]"
+      className="max-w-3xl mx-auto space-y-6 px-4 sm:px-6 md:px-8"
       style={{
         fontFamily: "dogica, mm, sans-serif",
         imageRendering: "pixelated",
@@ -59,10 +59,7 @@ export default function Timeline() {
       </h2>
 
       {schedule.map((item, index) => (
-        <div
-          key={index}
-          className="border border-black bg-white rounded-md shadow-md"
-        >
+        <div key={index} className="border border-black bg-white">
           <h3 className="px-4 py-2 font-bold bg-[#f0f0f0] text-[11px] sm:text-xs md:text-sm">
             {item.title}
           </h3>
@@ -80,10 +77,7 @@ export default function Timeline() {
         Speed Typing
       </h3>
       {speedTyping.map((item, index) => (
-        <div
-          key={index}
-          className="border border-black bg-white rounded-md shadow-md"
-        >
+        <div key={index} className="border border-black bg-white">
           <h4 className="px-4 py-2 font-bold bg-[#f0f0f0] text-[11px] sm:text-xs md:text-sm">
             {item.title}
           </h4>
@@ -97,10 +91,7 @@ export default function Timeline() {
         Capture The Flag
       </h3>
       {captureTheFlag.map((item, index) => (
-        <div
-          key={index}
-          className="border border-black bg-white rounded-md shadow-md"
-        >
+        <div key={index} className="border border-black bg-white">
           <h4 className="px-4 py-2 font-bold bg-[#f0f0f0] text-[11px] sm:text-xs md:text-sm">
             {item.title}
           </h4>

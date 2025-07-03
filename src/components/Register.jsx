@@ -20,7 +20,8 @@ export default function Register() {
             → Who Can Participate?
           </div>
           <div className="px-4 py-3 text-sm sm:text-base md:text-lg text-black">
-            Participation is open for college students from all institutes in India.
+            Participation is open for college students from all institutes in
+            India.
           </div>
         </div>
 
@@ -54,7 +55,11 @@ export default function Register() {
 
         {/* Final Note */}
         <p className="text-center mt-6 text-sm sm:text-base md:text-lg text-black">
-        Secure your spot. Retro-fy your code. Game on.        </p>
+          Secure your spot. Retro-fy your code. Game on.{" "}
+        </p>
+        <p className="text-center mt-6 text-sm sm:text-base md:text-lg text-black">
+          CHECK DOWNLOAD ASSETS!{" "}
+        </p>
       </div>
     </div>
   );

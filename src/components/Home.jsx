@@ -293,7 +293,7 @@ export default function Home() {
                 ))}
               </div>
 
-              <div className="w-full flex justify-center m-2">
+              <div className="w-full flex justify-center m-5">
                 <img
                   src="/down.png"
                   alt="Scroll Down"
@@ -361,13 +361,13 @@ export default function Home() {
                 </div>
               </div>
 
-
-                <div className="mt-20 w-full flex flex-col items-center">
+{/* 
+                <div className="mt-20  w-full flex flex-col items-center">
                   <h3 className="responsive-blast-text retro-subtitle font-mm uppercase text-[0.5rem] xs:text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl mb-7">
                     Our Awesome Speakers
                   </h3>
 
-                  <div className="w-full flex flex-wrap justify-center gap-20 mb-10">
+                  <div className="w-full flex flex-wrap justify-center gap-15 mb-10">
                     {[
                       { src: "/images.jpeg", alt: "Pranshu Sir", name: "Pranshu Sir" },
                       { src: "/images.jpeg", alt: "Arvind Sir", name: "Arvind Sir" },
@@ -376,7 +376,7 @@ export default function Home() {
                       <div
                         key={index}
                         className="
-                           border-white p-2 
+                           border-white p-1 
                           hover:scale-105 transition-transform 
                           hover:border-[#00ff95] 
                           flex flex-col items-center 
@@ -405,7 +405,7 @@ export default function Home() {
                       </div>
                     ))}
                   </div>
-                </div>
+                </div> */}
 
           <div className="mt-10 text-center text-[10px] xs:text-[11px] sm:text-xs md:text-sm text-gray-400 flex items-center justify-center gap-3">
           <span>Made</span><span>with</span>

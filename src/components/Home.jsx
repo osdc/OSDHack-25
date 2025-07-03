@@ -139,7 +139,7 @@ export default function Home() {
       text: "DATES",
       tint: "tint-[#ff6b6b]",
       modalHeading: "DATES",
-      modalContent: `Hackathon dates:\n11 July (7:00 PM) - 13 July (11:59 PM)`,
+      modalContent: `Hackathon Dates:\n11 July (7:00 PM) - 13 July (11:59 PM)`,
     },
     {
       src: "location (1).png",
@@ -147,7 +147,7 @@ export default function Home() {
       text: "REMOTE",
       tint: "tint-[#4ecdc4]",
       modalHeading: "LOCATION",
-      modalContent: `Venue: Your home`,
+      modalContent: `Venue: Your Home`,
     },
     {
       src: "rulebook.png",
@@ -220,110 +220,210 @@ export default function Home() {
     }
   ];
 
-  return (
-    <div
-      className="min-h-screen bg-black text-white py-12"
-      style={{
-        cursor: "url('/cursor.png') 16 16, auto",
-        imageRendering: "pixelated",
-        fontFamily: "dogica, mm, sans-serif",
-      }}
-    >
-      <div className="fixed top-2 left-4 right-4 flex justify-between items-center z-40 pointer-events-none">
-        <div className="flex space-x-2 pointer-events-auto">
-          <a href="https://www.instagram.com/osdc.dev/" onClick={playClick}>
-            <img src="/insta.png" alt="Instagram" className={socialIconStyle} />
-          </a>
-          <a href="https://discord.gg/D9mka7FCdB" onClick={playClick}>
-            <img src="/discord.png" alt="Discord" className={socialIconStyle} />
-          </a>
-          <a href="https://x.com/osdc_dev/" onClick={playClick}>
-            <img src="/x2.png" alt="Twitter" className={socialIconStyle} />
-          </a>
-        </div>
-        <div className="text-[8px] xs:text-[10px] sm:text-xs md:text-sm text-white font-dogica pointer-events-auto">
-          <Countdown />
-        </div>
-      </div>
-
-      {isLoading ? (
-        <Suspense>
-          <BootScreen steps={displayedSteps} blinkSymbol={blinkSymbol} />
-        </Suspense>
-      ) : (
-        <>
-          {showAlert && <Alert onClose={handleCloseAlert} onRegister={handleRegister} />}
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 flex flex-col items-center">
-            <h3 className="responsive-blast-text mt-8 mb-3 retro-subtitle font-mm uppercase text-[0.6rem] xs:text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">
-              blast from the past
-            </h3>
-            <h1 className="text-stroke text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-mm uppercase text-white">
-              OSDHACK'25
-            </h1>
-
-            <div className="mt-20 grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-x-4 gap-y-4 xs:gap-y-5 sm:gap-y-6 md:gap-y-8 w-full">
-              {icons.map(({ src, alt, text, tint, onClick, modalHeading, modalContent }, index) => (
-                <div key={index} className="flex flex-col items-center justify-center text-center">
-                  <img
-                    src={src}
-                    alt={alt}
-                    className={`${iconStyle} ${tint}`}
-                    onClick={() => {
-                      playClick();
-                      if (onClick) onClick();
-                      else if (modalHeading) {
-                        setActiveModal({
-                          heading: modalHeading,
-                          content: modalContent,
-                          src,
-                        });
-                      }
-                    }}
-                  />
-                  <span
-                    className={`font-dogica mt-2 text-[6px] xs:text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px] ${tint} text-center`}
-                  >
-                    {text}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            {activeModal && (
-              <PopupModal
-                isOpen={true}
-                onClose={() => {
-                  playClick();
-                  setActiveModal(null);
-                }}
-                heading={activeModal.heading}
-                iconSrc={activeModal?.src}
-              >
-                {activeModal.content}
-              </PopupModal>
-            )}
-
-            <div className="mt-10 flex lex-col sm:flex-row items-center justify-center gap-1 sm:gap-4 text-center">
-              <p className="font-dogica text-[10px] sm:text-xs">Sponsored By</p>
-              <a
-                href="https://www.codecrafters.io/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:scale-105 transition-transform"
-              >
-                <img
-                  src="/codecrafters.png"
-                  alt="CodeCrafters"
-                  className="h-5 sm:h-7 md:h-8 object-contain"
-                />
-              </a>
-              <p className="font-dogica text-[10px] sm:text-xs">
-                We ❤️ our Sponsors
-              </p>
-            </div>
+    return (
+      <div
+        className="min-h-screen bg-black text-white py-12"
+        style={{
+          cursor: "url('/cursor.png') 16 16, auto",
+          imageRendering: "pixelated",
+          fontFamily: "dogica, mm, sans-serif",
+        }}
+      >
+        <div className="fixed top-2 left-4 right-4 flex justify-between items-center z-40 pointer-events-none">
+          <div className="flex space-x-2 pointer-events-auto">
+            <a href="https://www.instagram.com/osdc.dev/" onClick={playClick}>
+              <img src="/insta.png" alt="Instagram" className={socialIconStyle} />
+            </a>
+            <a href="https://discord.gg/D9mka7FCdB" onClick={playClick}>
+              <img src="/discord.png" alt="Discord" className={socialIconStyle} />
+            </a>
+            <a href="https://x.com/osdc_dev/" onClick={playClick}>
+              <img src="/x2.png" alt="Twitter" className={socialIconStyle} />
+            </a>
           </div>
-        </>
-      )}
-    </div>
-  );
+          <div className="text-[8px] xs:text-[10px] sm:text-xs md:text-sm text-white font-dogica pointer-events-auto">
+            <Countdown />
+          </div>
+        </div>
+
+        {isLoading ? (
+          <Suspense>
+            <BootScreen steps={displayedSteps} blinkSymbol={blinkSymbol} />
+          </Suspense>
+        ) : (
+          <>
+            {showAlert && <Alert onClose={handleCloseAlert} onRegister={handleRegister} />}
+
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 flex flex-col items-center">
+             
+              <h3 className="responsive-blast-text mt-8 mb-3 retro-subtitle font-mm uppercase text-[0.6rem] xs:text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">
+                blast from the past
+              </h3>
+
+            
+              <h1 className="text-stroke text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-mm uppercase text-white">
+                OSDHACK'25
+              </h1>
+
+              <div className="mt-20 grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-x-4 gap-y-4 xs:gap-y-5 sm:gap-y-6 md:gap-y-8 w-full">
+                {icons.map(({ src, alt, text, tint, onClick, modalHeading, modalContent }, index) => (
+                  <div key={index} className="flex flex-col items-center justify-center text-center">
+                    <img
+                      src={src}
+                      alt={alt}
+                      className={`${iconStyle} ${tint}`}
+                      onClick={() => {
+                        playClick();
+                        if (onClick) onClick();
+                        else if (modalHeading) {
+                          setActiveModal({
+                            heading: modalHeading,
+                            content: modalContent,
+                            src,
+                          });
+                        }
+                      }}
+                    />
+                    <span
+                      className={`font-dogica mt-2 text-[6px] xs:text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px] ${tint} text-center`}
+                    >
+                      {text}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="w-full flex justify-center m-2">
+                <img
+                  src="/down.png"
+                  alt="Scroll Down"
+                  style={{ imageRendering: "pixelated" }}
+                  className="animate-bounce"
+                  width={48}
+                  height={48}
+                />
+              </div>
+
+              {activeModal && (
+                <PopupModal
+                  isOpen={true}
+                  onClose={() => {
+                    playClick();
+                    setActiveModal(null);
+                  }}
+                  heading={activeModal.heading}
+                  iconSrc={activeModal?.src}
+                >
+                  {activeModal.content}
+                </PopupModal>
+              )}
+
+              
+              <div className="mt-5 flex flex-col items-center">
+                <h3
+                  className="responsive-blast-text retro-subtitle font-mm uppercase 
+                  text-[0.5rem] xs:text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl mb-6"
+                >
+                  Our Awesome Sponsors
+                </h3>
+
+                <div
+                  className="
+                    flex flex-col sm:flex-row 
+                    items-center sm:justify-center gap-6 sm:gap-8
+                  "
+                >
+                  <a
+                    href="https://www.codecrafters.io/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:scale-105 transition-transform"
+                  >
+                    <img
+                      src="/codecrafters.png"
+                      alt="CodeCrafters"
+                      className="h-8 sm:h-10 md:h-12 object-contain"
+                    />
+                  </a>
+
+                  <a
+                    href="https://gen.xyz/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:scale-105 transition-transform"
+                  >
+                    <img
+                      src="/xyz_logo.png"
+                      alt=".xyz"
+                      className="h-8 sm:h-10 md:h-12 object-contain"
+                    />
+                  </a>
+                </div>
+              </div>
+
+
+                <div className="mt-20 w-full flex flex-col items-center">
+                  <h3 className="responsive-blast-text retro-subtitle font-mm uppercase text-[0.5rem] xs:text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl mb-7">
+                    Our Awesome Speakers
+                  </h3>
+
+                  <div className="w-full flex flex-wrap justify-center gap-20 mb-10">
+                    {[
+                      { src: "/images.jpeg", alt: "Pranshu Sir", name: "Pranshu Sir" },
+                      { src: "/images.jpeg", alt: "Arvind Sir", name: "Arvind Sir" },
+                      { src: "/images.jpeg", alt: "Feynon Sir", name: "Feynon Sir" },
+                    ].map((speaker, index) => (
+                      <div
+                        key={index}
+                        className="
+                           border-white p-2 
+                          hover:scale-105 transition-transform 
+                          hover:border-[#00ff95] 
+                          flex flex-col items-center 
+                          "
+                        style={{ imageRendering: "pixelated" }}
+                      >
+                        <img
+                          src={speaker.src}
+                          alt={speaker.alt}
+                          className="w-50 h-50 object-fill"
+                        />
+                        <span
+                          className="
+                            mt-2 
+                            font-dogica 
+                            text-[8px] xs:text-[9px] sm:text-[10px] md:text-xs 
+                            text-white 
+                            bg-black 
+                            px-2 
+                            py-[2px] 
+                          "
+                          style={{ imageRendering: "pixelated" }}
+                        >
+                          {speaker.name}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+          <div className="mt-10 text-center text-[10px] xs:text-[11px] sm:text-xs md:text-sm text-gray-400 flex items-center justify-center gap-3">
+          <span>Made</span><span>with</span>
+          <img 
+            src="/pixel-heart.png" 
+            alt="pixel-heart" 
+            className="w-[12px] xs:w-[14px] sm:w-[16px] md:w-[18px] inline-block" 
+            style={{ imageRendering: "pixelated" }}
+          />
+          <span>by</span>
+          <span className="text-white">OSDC</span>
+        </div>
+
+
+            </div>
+          </>
+        )}
+      </div>
+    );
+
 }

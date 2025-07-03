@@ -22,7 +22,13 @@ export default function Tracks() {
   return (
     <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 2xl:px-32 py-6 box-border">
       <div className="max-w-7xl mx-auto space-y-4">
-        <h2 className="text-center text-lg sm:text-xl font-bold mb-4">Tracks</h2>
+        <h2 className="text-center text-lg sm:text-xl font-bold mb-4">
+          Tracks
+        </h2>
+        <div className="text-center text-lg sm:text-xl font-bold mb-4">
+          The main theme is still blast from the past, however apart from this
+          theme we have two additional tracks, which may get you bonus prizes
+        </div>
 
         {tracks.map((track, index) => (
           <div key={index} className="border border-black bg-white">

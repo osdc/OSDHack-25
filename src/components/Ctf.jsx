@@ -17,7 +17,8 @@ export default function CTF() {
 
         {/* Intro */}
         <p className="text-center text-black font-bold text-[10px] sm:text-sm md:text-base">
-          It's not just a game - it's a digital battlefield.<br />
+          It's not just a game - it's a digital battlefield.
+          <br />
           Solve puzzles, crack codes, and snag the flag in this mini-CTF.
         </p>
 
@@ -61,8 +62,7 @@ export default function CTF() {
           </div>
           <div className="px-4 py-3 text-black text-[10px] sm:text-sm md:text-base">
             <ul className="list-disc pl-4 space-y-1">
-              <li>Individual participation only</li>
-              <li>No brute-forcing or DoS attacks</li>
+              <li>Team based ctf</li>
               <li>Flags must be submitted in correct format</li>
               <li>Most points wins!</li>
             </ul>

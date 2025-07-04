@@ -49,7 +49,8 @@ export default function CTF() {
               <li>Cryptography</li>
               <li>Web Exploitation</li>
               <li>Forensics</li>
-              <li>Reverse Engineering</li>
+              <li>OSINT</li>
+              <li>General Skills</li>
               <li>Miscellaneous</li>
             </ul>
           </div>

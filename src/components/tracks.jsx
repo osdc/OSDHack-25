@@ -12,8 +12,8 @@ export default function Tracks() {
     {
       title: "Humane Tech",
       content: [
-        "Humane tech includes ethically humane digital products which focus on user well-being.",
-        "Participants can create a project that takes care of humane design principles in their domain.",
+        "With tech being designed to exploit your data and attention have you ever felt that you are the product instead of the other way around?",
+        "Help us make tools to fight, viable alternatives or even totally unrelated projects optimised for actual user well-being.",
         "https://codeberg.org/teaserbot-labs/delightful-humane-design",
       ],
     },

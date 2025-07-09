@@ -327,38 +327,52 @@ export default function Home() {
                   Our Awesome Sponsors
                 </h3>
 
-                <div
-                  className="
-                    flex flex-col sm:flex-row 
-                    items-center sm:justify-center gap-6 sm:gap-8
-                  "
-                >
-                  <a
-                    href="https://www.codecrafters.io/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:scale-105 transition-transform"
-                  >
-                    <img
-                      src="/codecrafters.png"
-                      alt="CodeCrafters"
-                      className="h-8 sm:h-10 md:h-12 object-contain"
-                    />
-                  </a>
+               <div
+  className="
+    flex flex-col sm:flex-row 
+    items-center sm:justify-center gap-6 sm:gap-8
+  "
+>
+<a
+    href="https://gen.xyz/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="hover:scale-105 transition-transform"
+  >
+    <img
+      src="/xyz_logo.png"
+      alt=".xyz"
+      className="h-8 sm:h-10 md:h-12 object-contain"
+    />
+  </a>
+  <a
+  href="https://fossunited.org/"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="hover:scale-105 transition-transform"
+>
+<img
+  src="/fossunited.png"
+  alt="FOSS United"
+  className="h-10 sm:h-16 md:h-20 lg:h-24 w-auto object-contain"
+  style={{ imageRendering: "pixelated" }}
+/>
 
-                  <a
-                    href="https://gen.xyz/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:scale-105 transition-transform"
-                  >
-                    <img
-                      src="/xyz_logo.png"
-                      alt=".xyz"
-                      className="h-8 sm:h-10 md:h-12 object-contain"
-                    />
-                  </a>
-                </div>
+</a>
+  <a
+    href="https://www.codecrafters.io/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="hover:scale-105 transition-transform"
+  >
+    <img
+      src="/codecrafters.png"
+      alt="CodeCrafters"
+      className="h-8 sm:h-10 md:h-12 object-contain"
+    />
+  </a>
+</div>
+
               </div>
 
 {/* 

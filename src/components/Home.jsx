@@ -391,8 +391,8 @@ export default function Home() {
                     src: "/ankesh_sir.jpg", 
                     alt: "Ankesh Bharti", 
                     name: "Ankesh Bharti", 
-                    title: "Software Engineer",
-                    company: "CERN"
+                    title: "Co-founder & Community Steward",
+                    company: "User & Agents"
                   },
                   { 
                     src: "/Karanjot_Sir.png", 
@@ -417,7 +417,7 @@ export default function Home() {
                     </div>
                     <div className="text-center transition-all duration-300 group-hover:transform group-hover:translate-y-[-3px] px-2">
                       <div className="font-dogica leading-tight" style={{ imageRendering: "pixelated" }}>
-                        <div className="text-[#00ff95] font-dogica text-[11px] xs:text-xs sm:text-sm font-bold transition-colors duration-300 group-hover:brightness-125 mb-2">
+                        <div className="text-[#00ff95] font-dogica text-[10px] xs:text-[11px] sm:text-xs font-bold transition-colors duration-300 group-hover:brightness-125 mb-2">
                           {speaker.name}
                         </div>
                         <div className="text-gray-300 font-dogica text-[9px] xs:text-[10px] sm:text-[11px] transition-colors duration-300 group-hover:text-white mb-1">
